@@ -1,6 +1,5 @@
 #include "simple_blas.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void ls_hypothesis(const double *X, const double *theta,
                   int num_examples, int num_features, double *y) {
