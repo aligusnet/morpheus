@@ -1,6 +1,6 @@
 #include "../src/least_squares.h"
 
-#include "Unity/unity.h"
+#include <Unity/unity.h>
 
 #include <stdio.h>
 
