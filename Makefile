@@ -4,7 +4,7 @@ CC = cc
 AR = ar
 CFLAGS = -I$(OPENBLAS_PATH)/include -Icontrib -DUNITY_INCLUDE_DOUBLE
 LDFLAGS = -L$(OPENBLAS_PATH)/lib -Lobj
-LIBS = -lopenblas -lmorpheus -lunity
+LIBS = -lmorpheus -lunity -lopenblas
 
 
 LIB_SRC = $(wildcard src/*.c)
