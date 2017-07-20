@@ -1,13 +1,10 @@
 sudo: false
 language: c
 
-env:
-  - OPENBLAS_PATH=/usr
-
 addons:
   apt:
     packages:
-    - libopenblas-dev
+    - libblas-dev
 
 script:
   - make
