@@ -1,6 +1,6 @@
 CC = cc
 AR = ar
-CCFLAGS = -Icontrib -DUNITY_INCLUDE_DOUBLE
+CCFLAGS = -Iexternal -DUNITY_INCLUDE_DOUBLE
 LDFLAGS = -Lobj
 LIBS = -lmorpheus -lunity
 
@@ -45,9 +45,8 @@ obj/libmorpheus.a: $(LIB_OBJ)
 obj/libunity.a: obj/unity.o
 	$(AR) rcs $@ $^
 
-obj/unity.o: contrib/Unity/unity.c
-	$(CC) $(CCFLAGS) -Icontrib/Unity -c $< -o $@
+obj/unity.o: external/Unity/unity.c
+	$(CC) $(CCFLAGS) -Iexternal/Unity -c $< -o $@
 
 clean:
 	rm obj/*
-
