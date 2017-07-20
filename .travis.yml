@@ -2,7 +2,7 @@ sudo: false
 language: c
 
 env:
-  - OPENBLAS_PATH=/usr/lib/openblas/lib
+  - OPENBLAS_PATH=/usr/lib/openblas
 
 addons:
   apt:
@@ -11,4 +11,4 @@ addons:
 
 script:
   - make
-  - obj/testapp
+  - ./obj/testapp
