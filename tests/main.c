@@ -41,6 +41,6 @@ void test_least_squares () {
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
-  RUN_TEST(test_least_squares, 10);
+  RUN_TEST(test_least_squares);
   return (UnityEnd());
 }
