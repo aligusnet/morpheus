@@ -1,0 +1,14 @@
+sudo: false
+language: c
+
+env:
+  - OPENBLAS_PATH=/usr/lib/openblas/lib
+
+addons:
+  apt:
+    packages:
+    - libopenblas-dev
+
+script:
+  - make
+  - obj/testapp
