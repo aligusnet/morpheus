@@ -1,5 +1,8 @@
 #include "../src/least_squares.h"
+#include "../src/gradient.h"
 
+#define UNITY_DOUBLE_VERBOSE
+#define UNITY_DOUBLE_PRECISION 0.1
 #include <Unity/unity.h>
 
 #include <stdio.h>
@@ -38,9 +41,29 @@ void test_least_squares () {
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(grad_expected, grad, 2);
 }
 
+void numeric_gradient_tes() {
+  TEST_IGNORE();
+  double X[] = {
+    1, 3,
+    1, 5,
+    1, 10,
+    1, 0,
+    1, 4
+  };
+  double y[] = {9, 13, 23, 3, 11};
+  double theta[] = {3, 3};
+  double tmp_buffer[2*5];
+
+  double grad[2];
+  ls_gradient(X, y, theta, 5, 2, grad, tmp_buffer);
+  double num_grad[2];
+  numeric_gradient(ls_cost, X, y, theta, 5, 2, 10, num_grad, tmp_buffer);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(num_grad, grad, 2);
+}
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
   RUN_TEST(test_least_squares);
+  RUN_TEST(numeric_gradient_tes);
   return (UnityEnd());
 }
