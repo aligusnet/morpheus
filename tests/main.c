@@ -1,8 +1,6 @@
 #include "../src/least_squares.h"
 #include "../src/gradient.h"
 
-#define UNITY_DOUBLE_VERBOSE
-#define UNITY_DOUBLE_PRECISION 0.1
 #include <Unity/unity.h>
 
 #include <stdio.h>
@@ -42,7 +40,6 @@ void test_least_squares () {
 }
 
 void numeric_gradient_tes() {
-  TEST_IGNORE();
   double X[] = {
     1, 3,
     1, 5,
@@ -57,7 +54,7 @@ void numeric_gradient_tes() {
   double grad[2];
   ls_gradient(X, y, theta, 5, 2, grad, tmp_buffer);
   double num_grad[2];
-  numeric_gradient(ls_cost, X, y, theta, 5, 2, 10, num_grad, tmp_buffer);
+  numeric_gradient(ls_cost, X, y, theta, 5, 2, 1e-5, num_grad, tmp_buffer);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(num_grad, grad, 2);
 }
 

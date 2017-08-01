@@ -15,7 +15,7 @@ void simple_dgemv(const SIMPLE_TRANSPOSE trans,
                   const double alpha, const double *A, const double *x,
                   const double beta, double *y) {
   const int inc = 1;
-  const int lda = trans == SimpleNoTrans ? ncols : nrows;
+  const int lda = ncols;
   cblas_dgemv(CblasRowMajor, (int)trans, nrows, ncols,
               alpha, A, lda, x, inc, beta, y, inc);
 }

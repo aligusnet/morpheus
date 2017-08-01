@@ -1,6 +1,9 @@
 CC = cc
 AR = ar
-CCFLAGS = -Iexternal -DUNITY_INCLUDE_DOUBLE
+CCFLAGS = -Iexternal
+UNITY_CCFLAGS = -DUNITY_INCLUDE_DOUBLE \
+	-DUNITY_DOUBLE_VERBOSE \
+	-DUNITY_DOUBLE_PRECISION=1e-5
 LDFLAGS = -Lobj
 LIBS = -lmorpheus -lunity
 
@@ -17,7 +20,7 @@ ifeq ($(UNAME_S),Darwin)
 	ifdef OPENBLAS
 		CCFLAGS += -I$(OPENBLAS)/include
 		LIBS += -lopenblas
-		LDFLAGS += -L$(OPENBLAS_PATH)/lib
+		LDFLAGS += -L$(OPENBLAS)/lib
 	else
 		CCFLAGS += -DACCELERATE
 		LIBS += -framework accelerate
@@ -34,7 +37,7 @@ LIB_OBJ = $(patsubst src/%.c, obj/%.o, $(LIB_SRC))
 all: obj/testapp
 
 obj/testapp: tests/main.c obj/libmorpheus.a obj/libunity.a
-	$(CC) $(CCFLAGS) $(LDFLAGS) $< -o $@ $(LIBS)
+	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $< -o $@ $(LIBS)
 
 obj/%.o: src/%.c
 	$(CC) $(CCFLAGS) -c $< -o $@
@@ -46,7 +49,7 @@ obj/libunity.a: obj/unity.o
 	$(AR) rcs $@ $^
 
 obj/unity.o: external/Unity/unity.c
-	$(CC) $(CCFLAGS) -Iexternal/Unity -c $< -o $@
+	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) -Iexternal/Unity -c $< -o $@
 
 clean:
 	rm obj/*
