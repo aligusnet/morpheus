@@ -32,6 +32,13 @@ void morpheus_dgemv(const MORPHEUS_TRANSPOSE trans,
                   const double alpha, const double *A, const double *x,
                   const double beta, double *y);
 
+/*! Constant times a vector plus a vector.
+  y = alpha*x + y;
+*/
+void morpheus_daxpy(const int n,  /*!< number of elements in vectors x and y */
+                    const double alpha, /*!< scalar alpha */
+                    const double *x, /*!< vector x */
+                    double *y /*!< vector y */);
 /*! \} */
 
 #endif  /* MORHEPUS_morpheus_BLAS_H */

@@ -19,3 +19,9 @@ void morpheus_dgemv(const MORPHEUS_TRANSPOSE trans,
   cblas_dgemv(CblasRowMajor, (int)trans, nrows, ncols,
               alpha, A, lda, x, inc, beta, y, inc);
 }
+
+void morpheus_daxpy(const int n, const double alpha,
+                    const double *x, double *y) {
+  const int inc = 1;
+  cblas_daxpy(n, alpha, x, inc, y, inc);
+}

@@ -1,5 +1,6 @@
 #include "../src/least_squares.h"
 #include "../src/gradient.h"
+#include "../src/gradient_descent.h"
 
 #include <Unity/unity.h>
 
@@ -53,7 +54,7 @@ void test_least_squares () {
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(grad_expected, grad, 2);
 }
 
-void numeric_gradient_tes() {
+void test_numeric_gradient() {
   double X[] = {
     1, 3,
     1, 5,
@@ -78,9 +79,42 @@ void numeric_gradient_tes() {
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(num_grad, grad, 2);
 }
 
+void test_gradient_descent() {
+  double X[] = {
+    1, 3,
+    1, 5,
+    1, 10,
+    1, 0,
+    1, 4
+  };
+  double y[] = {9, 13, 23, 3, 11};
+  morpheus_data_t data;
+  data.x = X;
+  data.y = y;
+  data.num_features = 2;
+  data.num_examples = 5;
+
+  double theta[] = {1, 1};
+  double tmp_buffer[2*5];
+
+  morpheus_gradient_descent_params_t params;
+  params.max_iters = 4000;
+  params.epsilon = 1e-2;
+  params.alpha = 1e-2;
+
+  morpheus_minfuncs_t funcs;
+  funcs.cost = morheus_ls_cost;
+  funcs.gradient = morpheus_ls_gradient;
+
+  double theta_expected[] = {3, 2};
+  morphius_gradient_descent(&funcs, &data, &params, theta, tmp_buffer);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(theta_expected, theta, data.num_features);
+}
+
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
   RUN_TEST(test_least_squares);
-  RUN_TEST(numeric_gradient_tes);
+  RUN_TEST(test_numeric_gradient);
+  RUN_TEST(test_gradient_descent);
   return (UnityEnd());
 }

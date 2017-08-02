@@ -18,7 +18,7 @@
 Numerical gradient calculation is very slow and analytical method should be preferred.
 However the former is useful to test the latter.
  */
-void morpheus_numeric_gradient(morheus_cost_f cf,
+void morpheus_numeric_gradient(morpheus_cost_f cf,
                                const morpheus_data_t *data,
                                const double *theta,
                                double eps,
