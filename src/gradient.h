@@ -8,6 +8,11 @@
 #include "types.h"
 
 
+/*! \defgroup gradient gradient
+  \brief Gradient help functions
+  \{
+*/
+
 /*! \brief Calculates numerical gradient.
 
 Numerical gradient calculation is very slow and analytical method should be preferred.
@@ -19,5 +24,7 @@ void morpheus_numeric_gradient(morheus_cost_f cf,
                                double eps,
                                double *grad,
                                double *tmp_buffer);
+
+/*! \} */
 
 #endif /* MORHEPUS_GRADIENT_H */

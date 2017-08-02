@@ -11,6 +11,11 @@
 #include <cblas.h>
 #endif
 
+/*! \defgroup simple_blas simple_blas
+  \brief Simple Wrappers around BLAS functions
+  \{
+*/
+
 typedef enum {
     MorpheusNoTrans=CblasNoTrans,
     MorpheusTrans=CblasTrans,
@@ -26,5 +31,7 @@ void morpheus_dgemv(const MORPHEUS_TRANSPOSE trans,
                   const int nrows, const int ncols,
                   const double alpha, const double *A, const double *x,
                   const double beta, double *y);
+
+/*! \} */
 
 #endif  /* MORHEPUS_morpheus_BLAS_H */

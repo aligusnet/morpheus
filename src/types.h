@@ -5,6 +5,11 @@
 #ifndef MORHEPUS_TYPES_H
 #define MORHEPUS_TYPES_H
 
+/*! \defgroup types types
+  \brief Common types definitions
+  \{
+*/
+
 /*! Learing Data structure */
 typedef struct morpheus_data_t {
   const double *x;  /*!< (num_examples x num_features) matrix */
@@ -17,5 +22,7 @@ typedef struct morpheus_data_t {
 typedef double (*morheus_cost_f)(const morpheus_data_t *data,
                                  const double *theta,
                                  double *tmp_buffer);
+
+/*! \} */
 
 #endif /* MORHEPUS_TYPES_H */
