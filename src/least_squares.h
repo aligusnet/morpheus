@@ -1,17 +1,26 @@
 #ifndef MORHEPUS_LEAST_SQUARES_H
 #define MORHEPUS_LEAST_SQUARES_H
 
-void ls_hypothesis(const double *X, const double *theta,
-                  int num_examples, int num_features, double *y);
+#include "types.h"
 
+/*! Least Squares Hypothesis function */
+void morpheus_ls_hypothesis(const morpheus_data_t *data,
+                            const double *theta,
+                            double *y);
+
+
+/*! Least Squares Cost function */
 // tmp_buffer must be at least as big as theta
-double ls_cost(const double *X, const double *y, const double *theta,
-               int num_examples, int num_features,
-               double *tmp_buffer);
+double morheus_ls_cost(const morpheus_data_t *data,
+                       const double *theta,
+                       double *tmp_buffer);
 
+
+/*! Least Squares Gradient function */
 // tmp_buffer must be at least as big as grad
-void ls_gradient(const double *X, const double *y, const double *theta,
-                int num_examples, int num_features, double *grad,
-                double *tmp_buffer);
+void morpheus_ls_gradient(const morpheus_data_t *data,
+                          const double *theta,
+                          double *grad,
+                          double *tmp_buffer);
 
 #endif  /* MORHEPUS_LEAST_SQUARES_H */
