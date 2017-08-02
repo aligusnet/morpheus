@@ -16,6 +16,7 @@
   \{
 */
 
+/*! Whether to transpose matrix */
 typedef enum {
     MorpheusNoTrans=CblasNoTrans,
     MorpheusTrans=CblasTrans,
@@ -23,14 +24,30 @@ typedef enum {
 } MORPHEUS_TRANSPOSE;
 
 
+/*! Scales a vector by a constant. */
 void morpheus_dscal(const int n, const double alpha, double *x);
 
+
+/*! Copies a vector, x, to a vector, y. */
 void morpheus_dcopy(const int n, const double *x, double *y);
 
-void morpheus_dgemv(const MORPHEUS_TRANSPOSE trans,
-                  const int nrows, const int ncols,
-                  const double alpha, const double *A, const double *x,
-                  const double beta, double *y);
+
+/*! Performs one of the matrix-vector operations.
+  y = alpha*A*x + beta*y,   or   y = alpha*A**T*x + beta*y,
+
+  where alpha and beta are scalars, x and y are vectors and A is an
+  nrows by ncols matrix.
+
+  Assumes row-major ordering of matrix A.
+*/
+void morpheus_dgemv(const MORPHEUS_TRANSPOSE trans, /*!< Specifies whether to transpose matrix A */
+                  const int nrows,
+                  const int ncols,
+                  const double alpha,
+                  const double *A,
+                  const double *x,
+                  const double beta,
+                  double *y);
 
 /*! Constant times a vector plus a vector.
   y = alpha*x + y;
