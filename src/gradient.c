@@ -8,7 +8,7 @@ void morpheus_numeric_gradient(morheus_cost_f cf,
                                double *grad,
                                double *tmp_buffer) {
   double *bumped_theta = tmp_buffer;
-  simple_dcopy(data->num_features, theta, bumped_theta);
+  morpheus_dcopy(data->num_features, theta, bumped_theta);
   tmp_buffer = &tmp_buffer[data->num_features];
   int i;
   double eps1 = 1+eps;

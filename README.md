@@ -30,3 +30,11 @@ OPENBLAS=`brew --prefix openblas` make
 apt-get install libopenblas-dev
 OPENBLAS=/usr make
 ```
+
+## Generate documentation
+
+```
+make docs
+```
+
+*requires [doxygen](http://www.doxygen.org/)*

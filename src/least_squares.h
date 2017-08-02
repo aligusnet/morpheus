@@ -1,9 +1,13 @@
+/*! \file least_squares.h
+  \brief Least Squares Implementation
+*/
+
 #ifndef MORHEPUS_LEAST_SQUARES_H
 #define MORHEPUS_LEAST_SQUARES_H
 
 #include "types.h"
 
-/*! Least Squares Hypothesis function */
+/** Least Squares Hypothesis function */
 void morpheus_ls_hypothesis(const morpheus_data_t *data,
                             const double *theta,
                             double *y);

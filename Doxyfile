@@ -1,0 +1,20 @@
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "Morpheus"
+PROJECT_NUMBER         =
+PROJECT_BRIEF          = "Low-level machine learning auxiliary functions"
+PROJECT_LOGO           =
+OUTPUT_DIRECTORY       = docs
+TAB_SIZE               = 4
+OPTIMIZE_OUTPUT_FOR_C  = YES
+IDL_PROPERTY_SUPPORT   = NO
+
+
+#---------------------------------------------------------------------------
+# Configuration options related to the input files
+#---------------------------------------------------------------------------
+INPUT                  = src
+INPUT_ENCODING         = UTF-8

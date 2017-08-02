@@ -53,3 +53,8 @@ obj/unity.o: external/Unity/unity.c
 
 clean:
 	rm obj/*
+
+docs:
+	doxygen
+
+.PHONY: clean docs
