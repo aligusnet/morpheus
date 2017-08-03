@@ -1,6 +1,8 @@
 #include "gradient_descent.h"
 #include "simple_blas.h"
 
+#include <math.h>
+
 void morpheus_gradient_descent(const morpheus_minfuncs_t *funcs,
                                const morpheus_reg_t *reg,
                                const morpheus_data_t *data,
