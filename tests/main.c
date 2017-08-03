@@ -21,6 +21,7 @@ void test_least_squares () {
   data.y = y;
   data.num_features = 2;
   data.num_examples = 5;
+  data.layout = morpheus_row_major;
 
   double theta[] = {3, 2};
 
@@ -37,6 +38,7 @@ void test_least_squares () {
   data_to_predict.y = 0;
   data_to_predict.num_features = 2;
   data_to_predict.num_examples = 2;
+  data_to_predict.layout = morpheus_row_major;
 
   double prediction[2];
   double prediction_expected[] = {17, 21};
@@ -68,6 +70,7 @@ void test_numeric_gradient() {
   data.y = y;
   data.num_features = 2;
   data.num_examples = 5;
+  data.layout = morpheus_row_major;
 
   double theta[] = {3, 3};
   double tmp_buffer[2*5];
@@ -93,6 +96,7 @@ void test_gradient_descent() {
   data.y = y;
   data.num_features = 2;
   data.num_examples = 5;
+  data.layout = morpheus_row_major;
 
   double theta[] = {1, 1};
   double tmp_buffer[2*5];

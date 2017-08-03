@@ -5,6 +5,8 @@
 #ifndef MORHEPUS_TYPES_H
 #define MORHEPUS_TYPES_H
 
+#include "simple_blas.h"
+
 /*! \defgroup types types
   \brief Common types definitions
   \{
@@ -12,10 +14,11 @@
 
 /*! \brief Learing Data structure */
 typedef struct {
-  const double *x;  /*!< (num_examples x num_features) matrix */
-  const double *y;  /*!< (num_examples) vector */
-  int num_features;  /*!< number of features including bias dimension */
-  int num_examples;  /*!< number of examples */
+  const double *x;            /*!< (num_examples x num_features) matrix */
+  const double *y;            /*!< (num_examples) vector */
+  int num_features;           /*!< number of features including bias dimension */
+  int num_examples;           /*!< number of examples */
+  morpheus_layout_e layout;   /*!< layout of matrix x */
 } morpheus_data_t;
 
 
@@ -34,8 +37,8 @@ typedef void (*morpheus_gradient_f)(const morpheus_data_t *data,
 
 /*! Pointers to cost and gradient functions used to minimize cost function. */
 typedef struct {
-  morpheus_cost_f cost;            /*!< pointer to cost function */
-  morpheus_gradient_f gradient;   /*!< pointer to gradient function */
+  morpheus_cost_f cost;             /*!< pointer to cost function */
+  morpheus_gradient_f gradient;     /*!< pointer to gradient function */
 } morpheus_minfuncs_t;
 
 /*! \} */
