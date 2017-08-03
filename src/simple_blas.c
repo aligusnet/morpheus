@@ -31,3 +31,8 @@ double morpheus_dnrm2(const int n, const double *x) {
   const int inc = 1;
   return cblas_dnrm2(n, x, inc);
 }
+
+double morpheus_ddot(const int n, const double *x, const double *y) {
+  const int inc = 1;
+  return cblas_ddot(n, x, inc, y, inc);
+}

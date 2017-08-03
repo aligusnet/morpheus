@@ -6,6 +6,7 @@
 #define MORHEPUS_TYPES_H
 
 #include "simple_blas.h"
+#include "regularization.h"
 
 /*! \defgroup types types
   \brief Common types definitions
@@ -23,13 +24,15 @@ typedef struct {
 
 
 /*! Type definition of pointer to cost function.  */
-typedef double (*morpheus_cost_f)(const morpheus_data_t *data,
-                                 const double *theta,
-                                 double *tmp_buffer);
+typedef double (*morpheus_cost_f)(const morpheus_reg_t *reg,
+                                  const morpheus_data_t *data,
+                                  const double *theta,
+                                  double *tmp_buffer);
 
 
 /*! Type definition of pointer to gradient function.  */
-typedef void (*morpheus_gradient_f)(const morpheus_data_t *data,
+typedef void (*morpheus_gradient_f)(const morpheus_reg_t *reg,
+                                    const morpheus_data_t *data,
                                     const double *theta,
                                     double *grad,
                                     double *tmp_buffer);

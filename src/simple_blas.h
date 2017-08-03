@@ -2,8 +2,8 @@
   \brief Simple Wrappers around BLAS functions
 */
 
-#ifndef MORHEPUS_morpheus_BLAS_H
-#define MORHEPUS_morpheus_BLAS_H
+#ifndef MORHEPUS_SIMPLE_BLAS_H
+#define MORHEPUS_SIMPLE_BLAS_H
 
 #ifdef ACCELERATE
 #include <Accelerate/Accelerate.h>
@@ -71,6 +71,9 @@ void morpheus_daxpy(const int n,          /*!< number of elements in vectors x a
     sqrt( x'*x )
 */
 double morpheus_dnrm2(const int n, const double *x);
+
+/*! Forms the dot product of two vectors. */
+double morpheus_ddot(const int n, const double *x, const double *y);
 /*! \} */
 
-#endif  /* MORHEPUS_morpheus_BLAS_H */
+#endif  /* MORHEPUS_SIMPLE_BLAS_H */

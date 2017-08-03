@@ -22,6 +22,7 @@ typedef struct {
 
 /*! Gradient Descent Algorithm Implementation */
 void morpheus_gradient_descent(const morpheus_minfuncs_t *funcs,
+                               const morpheus_reg_t *reg,
                                const morpheus_data_t *data,
                                const morpheus_gradient_descent_params_t *params,
                                double *theta /*!< vector of size data->num_features */,

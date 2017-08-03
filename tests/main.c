@@ -7,6 +7,9 @@
 #include <stdio.h>
 
 void test_least_squares () {
+  morpheus_reg_t reg_none;
+  reg_none.type = morpheus_reg_none;
+
   double X[] = {
     1, 3,
     1, 5,
@@ -46,17 +49,24 @@ void test_least_squares () {
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(prediction_expected, prediction, data_to_predict.num_features);
 
   // cost function
-  double v = morpheus_ls_cost(&data, theta, tmp_buffer);
+  double v = morpheus_ls_cost(&reg_none, &data, theta, tmp_buffer);
   TEST_ASSERT_EQUAL_DOUBLE(0, v);
 
   // gradient
   double grad[2];
   double grad_expected[] = {0, 0};
-  morpheus_ls_gradient(&data, theta, grad, tmp_buffer);
+  morpheus_ls_gradient(&reg_none, &data, theta, grad, tmp_buffer);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(grad_expected, grad, 2);
 }
 
 void test_numeric_gradient() {
+  morpheus_reg_t reg_none;
+  reg_none.type = morpheus_reg_none;
+
+  morpheus_reg_t reg_l2;
+  reg_l2.type = morpheus_reg_l2;
+  reg_l2.lambda = 1;
+
   double X[] = {
     1, 3,
     1, 5,
@@ -76,13 +86,25 @@ void test_numeric_gradient() {
   double tmp_buffer[2*5];
 
   double grad[2];
-  morpheus_ls_gradient(&data, theta, grad, tmp_buffer);
   double num_grad[2];
-  morpheus_numeric_gradient(morpheus_ls_cost, &data, theta, 1e-5, num_grad, tmp_buffer);
+
+  /* No regularization */
+  morpheus_ls_gradient(&reg_none, &data, theta, grad, tmp_buffer);
+
+  morpheus_numeric_gradient(morpheus_ls_cost, &reg_none, &data, theta, 1e-5, num_grad, tmp_buffer);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(num_grad, grad, 2);
+
+  /* L2 regularization */
+  morpheus_ls_gradient(&reg_l2, &data, theta, grad, tmp_buffer);
+
+  morpheus_numeric_gradient(morpheus_ls_cost, &reg_l2, &data, theta, 1e-5, num_grad, tmp_buffer);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(num_grad, grad, 2);
 }
 
 void test_gradient_descent() {
+  morpheus_reg_t reg_none;
+  reg_none.type = morpheus_reg_none;
+
   double X[] = {
     1, 3,
     1, 5,
@@ -111,7 +133,7 @@ void test_gradient_descent() {
   funcs.gradient = morpheus_ls_gradient;
 
   double theta_expected[] = {3, 2};
-  morpheus_gradient_descent(&funcs, &data, &params, theta, tmp_buffer);
+  morpheus_gradient_descent(&funcs, &reg_none, &data, &params, theta, tmp_buffer);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(theta_expected, theta, data.num_features);
 }
 
