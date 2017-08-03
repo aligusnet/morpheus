@@ -64,6 +64,13 @@ void morpheus_daxpy(const int n,          /*!< number of elements in vectors x a
                     const double alpha,   /*!< scalar alpha */
                     const double *x,      /*!< vector x */
                     double *y             /*!< vector y */);
+
+
+/*! Returns the euclidean norm of a vector
+
+    sqrt( x'*x )
+*/
+double morpheus_dnrm2(const int n, const double *x);
 /*! \} */
 
 #endif  /* MORHEPUS_morpheus_BLAS_H */

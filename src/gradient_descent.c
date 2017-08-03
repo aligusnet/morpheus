@@ -14,5 +14,10 @@ void morpheus_gradient_descent(const morpheus_minfuncs_t *funcs,
   for (i = 0; i < params->max_iters; ++i) {
     funcs->gradient(data, theta, grad, tmp_buffer);
     morpheus_daxpy(data->num_features, -params->alpha, grad, theta);
+
+    double change = fabs(params->alpha)*morpheus_dnrm2(data->num_features, grad);
+    if (change < params->epsilon) {
+      return;
+    }
   }
 }

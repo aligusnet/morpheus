@@ -103,7 +103,7 @@ void test_gradient_descent() {
 
   morpheus_gradient_descent_params_t params;
   params.max_iters = 4000;
-  params.epsilon = 1e-2;
+  params.epsilon = 1e-10;
   params.alpha = 1e-2;
 
   morpheus_minfuncs_t funcs;

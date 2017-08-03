@@ -26,3 +26,8 @@ void morpheus_daxpy(const int n, const double alpha,
   const int inc = 1;
   cblas_daxpy(n, alpha, x, inc, y, inc);
 }
+
+double morpheus_dnrm2(const int n, const double *x) {
+  const int inc = 1;
+  return cblas_dnrm2(n, x, inc);
+}
