@@ -44,7 +44,7 @@ void test_least_squares () {
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(prediction_expected, prediction, data_to_predict.num_features);
 
   // cost function
-  double v = morheus_ls_cost(&data, theta, tmp_buffer);
+  double v = morpheus_ls_cost(&data, theta, tmp_buffer);
   TEST_ASSERT_EQUAL_DOUBLE(0, v);
 
   // gradient
@@ -75,7 +75,7 @@ void test_numeric_gradient() {
   double grad[2];
   morpheus_ls_gradient(&data, theta, grad, tmp_buffer);
   double num_grad[2];
-  morpheus_numeric_gradient(morheus_ls_cost, &data, theta, 1e-5, num_grad, tmp_buffer);
+  morpheus_numeric_gradient(morpheus_ls_cost, &data, theta, 1e-5, num_grad, tmp_buffer);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(num_grad, grad, 2);
 }
 
@@ -103,11 +103,11 @@ void test_gradient_descent() {
   params.alpha = 1e-2;
 
   morpheus_minfuncs_t funcs;
-  funcs.cost = morheus_ls_cost;
+  funcs.cost = morpheus_ls_cost;
   funcs.gradient = morpheus_ls_gradient;
 
   double theta_expected[] = {3, 2};
-  morphius_gradient_descent(&funcs, &data, &params, theta, tmp_buffer);
+  morpheus_gradient_descent(&funcs, &data, &params, theta, tmp_buffer);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(theta_expected, theta, data.num_features);
 }
 

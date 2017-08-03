@@ -20,7 +20,7 @@ void morpheus_ls_hypothesis(const morpheus_data_t *data,
 
 /*! Least Squares Cost function */
 // tmp_buffer must be at least as big as theta
-double morheus_ls_cost(const morpheus_data_t *data,
+double morpheus_ls_cost(const morpheus_data_t *data,
                        const double *theta /*!< vector of size data->num_features */,
                        double *tmp_buffer  /*!< must be at least as big as theta */);
 

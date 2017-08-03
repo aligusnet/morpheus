@@ -10,7 +10,7 @@ void morpheus_ls_hypothesis(const morpheus_data_t *data,
                alpha, data->x, theta, beta, y);
 }
 
-double morheus_ls_cost(const morpheus_data_t *data,
+double morpheus_ls_cost(const morpheus_data_t *data,
                        const double *theta,
                        double *m) {
   const double alpha = 1;
