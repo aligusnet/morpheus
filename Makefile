@@ -33,11 +33,13 @@ OPENBLAS_PATH ?= /usr/local/opt/openblas
 LIB_SRC = $(wildcard src/*.c)
 LIB_OBJ = $(patsubst src/%.c, obj/%.o, $(LIB_SRC))
 
+TESTS_SRC = $(wildcard tests/*.c)
+
 
 all: obj/testapp
 
-obj/testapp: tests/main.c obj/libmorpheus.a obj/libunity.a
-	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $< -o $@ $(LIBS)
+obj/testapp: $(TESTS_SRC) obj/libmorpheus.a obj/libunity.a
+	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $(LIBS) $(TESTS_SRC) -o $@
 
 obj/%.o: src/%.c
 	$(CC) $(CCFLAGS) -c $< -o $@
