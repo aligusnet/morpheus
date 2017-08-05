@@ -141,6 +141,7 @@ void test_gradient_descent() {
 extern void test_column_max();
 extern void test_column_min();
 extern void test_column_pred();
+extern void test_row_pred();
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
@@ -150,5 +151,6 @@ int main (int argc, char **argv) {
   RUN_TEST(test_column_max);
   RUN_TEST(test_column_min);
   RUN_TEST(test_column_pred);
+  RUN_TEST(test_row_pred);
   return (UnityEnd());
 }

@@ -16,14 +16,14 @@
 
   Pred takes and accumulator and next value of the column, returns new accumulator.
 
-  Return accumulator values for every column.
+  Returns accumulator values for every column.
  */
-void morpheus_column_predicate(morpheus_layout_e layout,
+void morpheus_column_predicate(double (*pred)(double, double),
+                               morpheus_layout_e layout,
                                int nrows,
                                int ncols,
                                const double *x,
-                               double *y,                  /*!< vector of maximum values of size ncols */
-                               double (*pred)(double, double));
+                               double *y                  /*!< vector of size ncols */);
 
 /*! Finds maximum values of every column of the matrix x */
 void morpheus_column_max(morpheus_layout_e layout,
@@ -38,6 +38,19 @@ void morpheus_column_min(morpheus_layout_e layout,
                          int nrows, int ncols,
                          const double *x,
                          double *y                 /*!< vector of minimum values of size ncols */);
+
+
+/*! Scan every row if matrix x.
+
+ Pred takes and accumulator and next value of the row, returns new accumulator.
+
+ Returns accumulator values for every row.
+*/
+void morpheus_row_predicate(double (*pred)(double, double),
+                            morpheus_layout_e layout,
+                            int nrows, int ncols,
+                            const double *x,
+                            double *y             /*!< vector of size ncols */);
 /*! \} */
 
 #endif /* MORPHEPUS_MATRIX_MAP_H */
