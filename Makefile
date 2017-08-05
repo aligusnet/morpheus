@@ -39,7 +39,7 @@ TESTS_SRC = $(wildcard tests/*.c)
 all: obj/testapp
 
 obj/testapp: $(TESTS_SRC) obj/libmorpheus.a obj/libunity.a
-	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $(LIBS) $(TESTS_SRC) -o $@
+	$(CC) $(TESTS_SRC) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $(LIBS) -o $@
 
 obj/%.o: src/%.c
 	$(CC) $(CCFLAGS) -c $< -o $@
