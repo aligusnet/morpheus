@@ -1,6 +1,7 @@
 #include "../src/least_squares.h"
 #include "../src/gradient.h"
 #include "../src/gradient_descent.h"
+#include "../src/matrix_map.h"
 
 #include <Unity/unity.h>
 
@@ -137,10 +138,30 @@ void test_gradient_descent() {
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(theta_expected, theta, data.num_features);
 }
 
+void test_column_max() {
+  double x[] = {
+    71, 11, 3,  9, 7,
+    21, 7,  2,  23, 11,
+    11, 32, 53, 49, 37,
+    1,  24, 78, 90, 17
+  };
+
+  double y[5];
+
+  double expected_row_major[] = {71, 32, 78, 90, 37};
+  morpheus_column_max(morpheus_row_major, 4, 5, x, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_row_major, y, 5);
+
+  double expected_col_major[] = {71, 23, 53, 90};
+  morpheus_column_max(morpheus_col_major, 5, 4, x, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_col_major, y, 4);
+}
+
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
   RUN_TEST(test_least_squares);
   RUN_TEST(test_numeric_gradient);
   RUN_TEST(test_gradient_descent);
+  RUN_TEST(test_column_max);
   return (UnityEnd());
 }
