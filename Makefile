@@ -5,7 +5,7 @@ UNITY_CCFLAGS = -DUNITY_INCLUDE_DOUBLE \
 	-DUNITY_DOUBLE_VERBOSE \
 	-DUNITY_DOUBLE_PRECISION=1e-5
 LDFLAGS = -Lobj
-LIBS = -lm -lmorpheus -lunity
+LIBS = -lmorpheus -lunity -lm
 
 
 UNAME_S := $(shell uname -s)
