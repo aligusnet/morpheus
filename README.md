@@ -8,7 +8,13 @@ Low-level machine learning auxiliary functions.
 ## Build and run tests
 
 ```bash
-make && ./obj/testapp
+make && ./bin/testapp
+```
+
+## Build and run benchmarks
+
+```bash
+make && ./bin/benchapp
 ```
 
 ### Build against OpenBLAS
@@ -17,7 +23,7 @@ make && ./obj/testapp
 
 * Homebrew:
 
-```
+```bash
 brew install homebrew/science/openblas
 OPENBLAS=`brew --prefix openblas` make
 ```
@@ -26,14 +32,14 @@ OPENBLAS=`brew --prefix openblas` make
 
 * Debian/Ubuntu:
 
-```
+```bash
 apt-get install libopenblas-dev
 OPENBLAS=/usr make
 ```
 
 ## Generate documentation
 
-```
+```bash
 make docs
 ```
 

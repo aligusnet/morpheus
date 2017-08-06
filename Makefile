@@ -40,7 +40,7 @@ BENCHMARKS_SRC = $(wildcard benchmarks/*.c)
 BENCHMARKS_OBJ = $(patsubst benchmarks/%.c, bin/obj/benchmarks/%.o, $(BENCHMARKS_SRC))
 
 
-all: bin/testapp bin/benchmarkapp
+all: bin/testapp bin/benchapp
 
 # library
 bin/obj/src/%.o: src/%.c
@@ -67,7 +67,7 @@ bin/testapp: $(TESTS_OBJ) bin/lib/libmorpheus.a bin/lib/libunity.a
 bin/obj/benchmarks/%.o: benchmarks/%.c
 	$(CC) $(CCFLAGS) -c $< -o $@
 
-bin/benchmarkapp: $(BENCHMARKS_OBJ)
+bin/benchapp: $(BENCHMARKS_OBJ)
 	$(CC) $(BENCHMARKS_OBJ) $(CCFLAGS) $(LDFLAGS) $(LIBS) -o $@
 
 clean:
