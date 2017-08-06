@@ -5,7 +5,7 @@ UNITY_CCFLAGS = -DUNITY_INCLUDE_DOUBLE \
 	-DUNITY_DOUBLE_VERBOSE \
 	-DUNITY_DOUBLE_PRECISION=1e-5
 LDFLAGS = -Lbin/lib
-LIBS = -lmorpheus -lunity -lm
+LIBS = -lmorpheus -lm
 
 
 UNAME_S := $(shell uname -s)
@@ -69,10 +69,10 @@ bin/obj/tests/%.o: tests/%.c
 	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) -c $< -o $@
 
 bin/testapp: $(TESTS_OBJ) bin/lib/libmorpheus.a bin/lib/libunity.a
-	$(CC) $(TESTS_OBJ) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $(LIBS) -o $@
+	$(CC) $(TESTS_OBJ) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $(LIBS) -lunity -o $@
 
 #benchmarks
-bin/obj/benchmarks/%.o: benchmarks/%.c
+bin/obj/benchmarks/%.o: benchmarks/%.c bin/lib/libmorpheus.a
 	$(CC) $(CCFLAGS) -c $< -o $@
 
 bin/benchapp: $(BENCHMARKS_OBJ)

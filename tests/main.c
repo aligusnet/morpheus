@@ -142,6 +142,10 @@ extern void test_column_max();
 extern void test_column_min();
 extern void test_column_pred();
 extern void test_row_pred();
+extern void test_column_max_index();
+extern void test_column_min_index();
+extern void test_row_max_index();
+extern void test_row_min_index();
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
@@ -152,5 +156,10 @@ int main (int argc, char **argv) {
   RUN_TEST(test_column_min);
   RUN_TEST(test_column_pred);
   RUN_TEST(test_row_pred);
+  RUN_TEST(test_column_max_index);
+  RUN_TEST(test_column_min_index);
+  RUN_TEST(test_row_max_index);
+  RUN_TEST(test_row_min_index);
+
   return (UnityEnd());
 }
