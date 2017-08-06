@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
   for (int i = 0; i < size*size; ++i) {
     x[i] = rand();
   }
-  
+
   bench_column_pred(n, "column_pred_max - row_major", fmax, morpheus_row_major, size, x);
   bench_column_pred(n, "column_pred_max - col_major", fmax, morpheus_col_major, size, x);
 
@@ -28,6 +28,12 @@ int main(int argc, char **argv) {
 
   bench_row_min_index(n, "row_min_index - row_major", morpheus_row_major, size, x);
   bench_row_min_index(n, "row_min_index - col_major", morpheus_col_major, size, x);
+
+  bench_column_sum(n, "column_sum - row_major", morpheus_row_major, size, x);
+  bench_column_sum(n, "column_sum - col_major", morpheus_col_major, size, x);
+
+  bench_row_sum(n, "row_sum - row_major", morpheus_row_major, size, x);
+  bench_row_sum(n, "row_sum - col_major", morpheus_col_major, size, x);
 
   free(x);
   return 0;

@@ -28,4 +28,13 @@ void bench_row_max_index(int n, const char *message,
 void bench_row_min_index(int n, const char *message,
                          morpheus_layout_e layout,
                          int size, double *x);
+
+void bench_column_sum(int n, const char *message,
+                      morpheus_layout_e layout,
+                      int size, double *x);
+
+void bench_row_sum(int n, const char *message,
+                   morpheus_layout_e layout,
+                   int size, double *x);
+
 #endif /* MORPHEUS_BENCHMARKS_BENCH_MATRIX_MAP_H */

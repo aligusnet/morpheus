@@ -133,3 +133,41 @@ void test_row_min_index() {
   morpheus_row_min_index(morpheus_col_major, 5, 4, x, y, is);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y_col_major, y, 5);
 }
+
+void test_column_sum() {
+  double x[] = {
+    71, 11, 3,  9, 7,
+    21, 7,  2,  23, 11,
+    11, 32, 53, 49, 37,
+    1,  24, 78, 90, 17
+  };
+
+  double y[5];
+
+  double expected_y_row_major[] = {104, 74, 136, 171, 72};
+  morpheus_column_sum(morpheus_row_major, 4, 5, x, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y_row_major, y, 5);
+
+  double expected_y_col_major[] = {101, 64,182, 210};
+  morpheus_column_sum(morpheus_col_major, 5, 4, x, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y_col_major, y, 4);
+}
+
+void test_row_sum() {
+  double x[] = {
+    71, 11, 3,  9, 7,
+    21, 7,  2,  23, 11,
+    11, 32, 53, 49, 37,
+    1,  24, 78, 90, 17
+  };
+
+  double y[5];
+
+  double expected_y_row_major[] = {101, 64,182, 210};
+  morpheus_row_sum(morpheus_row_major, 4, 5, x, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y_row_major, y, 4);
+
+  double expected_y_col_major[] = {104, 74, 136, 171, 72};
+  morpheus_row_sum(morpheus_col_major, 5, 4, x, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y_col_major, y, 5);
+}

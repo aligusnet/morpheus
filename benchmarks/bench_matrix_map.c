@@ -107,3 +107,33 @@ void bench_row_min_index(int n, const char *message,
   double ms = (finish-start)/n;
   printf("Benchmark %s: %f ms\n", message, ms);
 }
+
+void bench_column_sum(int n, const char *message,
+                      morpheus_layout_e layout,
+                      int size, double *x) {
+  double *y = calloc(size, sizeof(double));
+  double start = get_time();
+  for (int i = 0; i < n; ++i) {
+    y[0] = i;
+    morpheus_column_sum(layout, size, size, x, y);
+  }
+  double finish = get_time();
+  free(y);
+  double ms = (finish-start)/n;
+  printf("Benchmark %s: %f ms\n", message, ms);
+}
+
+void bench_row_sum(int n, const char *message,
+                   morpheus_layout_e layout,
+                   int size, double *x) {
+  double *y = calloc(size, sizeof(double));
+  double start = get_time();
+  for (int i = 0; i < n; ++i) {
+    y[0] = i;
+    morpheus_row_sum(layout, size, size, x, y);
+  }
+  double finish = get_time();
+  free(y);
+  double ms = (finish-start)/n;
+  printf("Benchmark %s: %f ms\n", message, ms);
+}

@@ -209,3 +209,59 @@ void morpheus_row_min_index(morpheus_layout_e layout,
     assert(0);
   }
 }
+
+void morpheus_column_sum(morpheus_layout_e layout,
+                         int nrows, int ncols,
+                         const double *x,
+                         double *y) {
+  if (layout == morpheus_row_major) {
+    for (int j = 0; j < ncols; ++j) {
+      y[j] = 0;
+    }
+    for (int i = 0; i < nrows; ++i) {
+      const double *row = x + i*ncols;
+      for (int j = 0; j < ncols; ++j) {
+        y[j] += row[j];
+      }
+    }
+  } else if (layout == morpheus_col_major) {
+    for (int j = 0; j < ncols; ++j) {
+      const double *column = &x[j*nrows];
+      y[j] = 0;
+      for (int i = 0; i < nrows; ++i) {
+        y[j] += column[i];
+      }
+    }
+  } else {
+    perror("unkwnown matrix layout");
+    assert(0);
+  }
+}
+
+void morpheus_row_sum(morpheus_layout_e layout,
+                      int nrows, int ncols,
+                      const double *x,
+                      double *y) {
+  if (layout == morpheus_row_major) {
+    for (int i = 0; i < nrows; ++i) {
+      const double *row = x + i*ncols;
+      y[i] = 0;
+      for (int j = 0; j < ncols; ++j) {
+        y[i] += row[j];
+      }
+    }
+  } else if (layout == morpheus_col_major) {
+    for (int i = 0; i < nrows; ++i) {
+      y[i] = 0;
+    }
+    for (int j = 0; j < ncols; ++j) {
+      const double *column = x + j*nrows;
+      for (int i = 0; i < nrows; ++i) {
+        y[i] += column[i];
+      }
+    }
+  } else {
+    perror("unkwnown matrix layout");
+    assert(0);
+  }
+}

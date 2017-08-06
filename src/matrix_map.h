@@ -65,6 +65,18 @@ void morpheus_row_min_index(morpheus_layout_e layout,
                             const double *x,
                             double *y,        /*!< vector of minimum values of size nrows */
                             int *is           /*!< vector of indices of size nrows */);
+
+/*! Calculates sums of elements of every column of the matrix x */
+void morpheus_column_sum(morpheus_layout_e layout,
+                         int nrows, int ncols,
+                         const double *x,
+                         double *y           /*!< vector of sums of size ncols */);
+
+/*! Calculates sums of elements of every row of the matrix x */
+void morpheus_row_sum(morpheus_layout_e layout,
+                      int nrows, int ncols,
+                      const double *x,
+                      double *y              /*!< vector of sums of size nrows */);
 /*! \} */
 
 #endif /* MORPHEPUS_MATRIX_MAP_H */
