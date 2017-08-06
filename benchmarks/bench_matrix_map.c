@@ -4,6 +4,7 @@
 #include "../src/matrix_map.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void bench_column_max(int n, const char *message,
                       morpheus_layout_e layout,
