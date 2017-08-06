@@ -3,14 +3,6 @@
 
 #include "../src/simple_blas.h"
 
-void bench_column_max(int n, const char *message,
-                      morpheus_layout_e layout,
-                      int size, double *x);
-
-void bench_column_min(int n, const char *message,
-                      morpheus_layout_e layout,
-                      int size, double *x);
-
 void bench_column_pred(int n, const char *message,
                        double (*pred)(double, double),
                        morpheus_layout_e layout,

@@ -138,8 +138,6 @@ void test_gradient_descent() {
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(theta_expected, theta, data.num_features);
 }
 
-extern void test_column_max();
-extern void test_column_min();
 extern void test_column_pred();
 extern void test_row_pred();
 extern void test_column_max_index();
@@ -152,8 +150,6 @@ int main (int argc, char **argv) {
   RUN_TEST(test_least_squares);
   RUN_TEST(test_numeric_gradient);
   RUN_TEST(test_gradient_descent);
-  RUN_TEST(test_column_max);
-  RUN_TEST(test_column_min);
   RUN_TEST(test_column_pred);
   RUN_TEST(test_row_pred);
   RUN_TEST(test_column_max_index);

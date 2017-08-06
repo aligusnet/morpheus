@@ -10,12 +10,7 @@ int main(int argc, char **argv) {
   for (int i = 0; i < size*size; ++i) {
     x[i] = rand();
   }
-  bench_column_max(n, "column_max - row_major", morpheus_row_major, size, x);
-  bench_column_max(n, "column_max - col_major", morpheus_col_major, size, x);
-
-  bench_column_min(n, "column_min - row_major", morpheus_row_major, size, x);
-  bench_column_min(n, "column_min - col_major", morpheus_col_major, size, x);
-
+  
   bench_column_pred(n, "column_pred_max - row_major", fmax, morpheus_row_major, size, x);
   bench_column_pred(n, "column_pred_max - col_major", fmax, morpheus_col_major, size, x);
 
