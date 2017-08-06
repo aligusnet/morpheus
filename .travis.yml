@@ -9,3 +9,6 @@ addons:
 script:
   - make
   - ./obj/testapp
+
+after_success:
+  - ./obj/benchmarkapp

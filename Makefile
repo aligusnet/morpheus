@@ -31,30 +31,47 @@ endif
 OPENBLAS_PATH ?= /usr/local/opt/openblas
 
 LIB_SRC = $(wildcard src/*.c)
-LIB_OBJ = $(patsubst src/%.c, obj/%.o, $(LIB_SRC))
+LIB_OBJ = $(patsubst src/%.c, obj/src_%.o, $(LIB_SRC))
 
 TESTS_SRC = $(wildcard tests/*.c)
+TESTS_OBJ = $(patsubst tests/%.c, obj/tests_%.o, $(TESTS_SRC))
+
+BENCHMARKS_SRC = $(wildcard benchmarks/*.c)
+BENCHMARKS_OBJ = $(patsubst benchmarks/%.c, obj/benchmarks_%.o, $(BENCHMARKS_SRC))
 
 
-all: obj/testapp
+all: obj/testapp obj/benchmarkapp
 
-obj/testapp: $(TESTS_SRC) obj/libmorpheus.a obj/libunity.a
-	$(CC) $(TESTS_SRC) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $(LIBS) -o $@
-
-obj/%.o: src/%.c
+# library
+obj/src_%.o: src/%.c
 	$(CC) $(CCFLAGS) -c $< -o $@
 
 obj/libmorpheus.a: $(LIB_OBJ)
 	$(AR) rcs $@ $^
 
-obj/libunity.a: obj/unity.o
-	$(AR) rcs $@ $^
-
+# unity
 obj/unity.o: external/Unity/unity.c
 	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) -Iexternal/Unity -c $< -o $@
 
+obj/libunity.a: obj/unity.o
+	$(AR) rcs $@ $^
+
+#tests
+obj/tests_%.o: tests/%.c
+	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) -c $< -o $@
+
+obj/testapp: $(TESTS_OBJ) obj/libmorpheus.a obj/libunity.a
+	$(CC) $(TESTS_OBJ) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $(LIBS) -o $@
+
+#benchmarks
+obj/benchmarks_%.o: benchmarks/%.c
+	$(CC) $(CCFLAGS) -c $< -o $@
+
+obj/benchmarkapp: $(BENCHMARKS_OBJ)
+	$(CC) $(BENCHMARKS_OBJ) $(CCFLAGS) $(LDFLAGS) $(LIBS) -o $@
+
 clean:
-	rm obj/*
+	rm -f obj/*
 
 docs:
 	doxygen
