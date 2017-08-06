@@ -4,7 +4,7 @@ CCFLAGS = -Iexternal -O3 -std=c99
 UNITY_CCFLAGS = -DUNITY_INCLUDE_DOUBLE \
 	-DUNITY_DOUBLE_VERBOSE \
 	-DUNITY_DOUBLE_PRECISION=1e-5
-LDFLAGS = -Lobj
+LDFLAGS = -Lbin/lib
 LIBS = -lmorpheus -lunity -lm
 
 
@@ -28,50 +28,50 @@ ifeq ($(UNAME_S),Darwin)
 endif
 
 
-OPENBLAS_PATH ?= /usr/local/opt/openblas
+$(shell mkdir -p bin/obj/src bin/obj/tests bin/obj/benchmarks bin/lib)
 
 LIB_SRC = $(wildcard src/*.c)
-LIB_OBJ = $(patsubst src/%.c, obj/src_%.o, $(LIB_SRC))
+LIB_OBJ = $(patsubst src/%.c, bin/obj/src/%.o, $(LIB_SRC))
 
 TESTS_SRC = $(wildcard tests/*.c)
-TESTS_OBJ = $(patsubst tests/%.c, obj/tests_%.o, $(TESTS_SRC))
+TESTS_OBJ = $(patsubst tests/%.c, bin/obj/tests/%.o, $(TESTS_SRC))
 
 BENCHMARKS_SRC = $(wildcard benchmarks/*.c)
-BENCHMARKS_OBJ = $(patsubst benchmarks/%.c, obj/benchmarks_%.o, $(BENCHMARKS_SRC))
+BENCHMARKS_OBJ = $(patsubst benchmarks/%.c, bin/obj/benchmarks/%.o, $(BENCHMARKS_SRC))
 
 
-all: obj/testapp obj/benchmarkapp
+all: bin/testapp bin/benchmarkapp
 
 # library
-obj/src_%.o: src/%.c
+bin/obj/src/%.o: src/%.c
 	$(CC) $(CCFLAGS) -c $< -o $@
 
-obj/libmorpheus.a: $(LIB_OBJ)
+bin/lib/libmorpheus.a: $(LIB_OBJ)
 	$(AR) rcs $@ $^
 
 # unity
-obj/unity.o: external/Unity/unity.c
+bin/obj/unity.o: external/Unity/unity.c
 	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) -Iexternal/Unity -c $< -o $@
 
-obj/libunity.a: obj/unity.o
+bin/lib/libunity.a: bin/obj/unity.o
 	$(AR) rcs $@ $^
 
 #tests
-obj/tests_%.o: tests/%.c
+bin/obj/tests/%.o: tests/%.c
 	$(CC) $(CCFLAGS) $(UNITY_CCFLAGS) -c $< -o $@
 
-obj/testapp: $(TESTS_OBJ) obj/libmorpheus.a obj/libunity.a
+bin/testapp: $(TESTS_OBJ) bin/lib/libmorpheus.a bin/lib/libunity.a
 	$(CC) $(TESTS_OBJ) $(CCFLAGS) $(UNITY_CCFLAGS) $(LDFLAGS) $(LIBS) -o $@
 
 #benchmarks
-obj/benchmarks_%.o: benchmarks/%.c
+bin/obj/benchmarks/%.o: benchmarks/%.c
 	$(CC) $(CCFLAGS) -c $< -o $@
 
-obj/benchmarkapp: $(BENCHMARKS_OBJ)
+bin/benchmarkapp: $(BENCHMARKS_OBJ)
 	$(CC) $(BENCHMARKS_OBJ) $(CCFLAGS) $(LDFLAGS) $(LIBS) -o $@
 
 clean:
-	rm -f obj/*
+	rm -rf bin
 
 docs:
 	doxygen
