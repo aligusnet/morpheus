@@ -42,6 +42,14 @@ BENCHMARKS_OBJ = $(patsubst benchmarks/%.c, bin/obj/benchmarks/%.o, $(BENCHMARKS
 
 all: bin/testapp bin/benchapp
 
+
+test: bin/testapp
+	./bin/testapp
+
+
+bench: bin/benchapp
+	./bin/benchapp
+
 # library
 bin/obj/src/%.o: src/%.c
 	$(CC) $(CCFLAGS) -c $< -o $@

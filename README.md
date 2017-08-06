@@ -8,13 +8,13 @@ Low-level machine learning auxiliary functions.
 ## Build and run tests
 
 ```bash
-make && ./bin/testapp
+make test
 ```
 
 ## Build and run benchmarks
 
 ```bash
-make && ./bin/benchapp
+make bench
 ```
 
 ### Build against OpenBLAS
