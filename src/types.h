@@ -23,14 +23,14 @@ typedef struct {
 } morpheus_data_t;
 
 
-/*! Type definition of pointer to cost function.  */
+/*! Type definition of pointer to cost function. */
 typedef double (*morpheus_cost_f)(const morpheus_reg_t *reg,
                                   const morpheus_data_t *data,
                                   const double *theta,
                                   double *tmp_buffer);
 
 
-/*! Type definition of pointer to gradient function.  */
+/*! Type definition of pointer to gradient function. */
 typedef void (*morpheus_gradient_f)(const morpheus_reg_t *reg,
                                     const morpheus_data_t *data,
                                     const double *theta,
@@ -38,11 +38,16 @@ typedef void (*morpheus_gradient_f)(const morpheus_reg_t *reg,
                                     double *tmp_buffer);
 
 
-/*! Pointers to cost and gradient functions used to minimize cost function. */
+typedef double (*morpheus_f)(const double *x, void *params);
+
+typedef void (*morpheus_df)(const double *x, void *params, double *grad);
+
+
 typedef struct {
-  morpheus_cost_f cost;             /*!< pointer to cost function */
-  morpheus_gradient_f gradient;     /*!< pointer to gradient function */
-} morpheus_minfuncs_t;
+  morpheus_data_t data;
+  morpheus_reg_t reg;
+  double *memory_buffer;
+} morpheus_params_t;
 
 /*! \} */
 

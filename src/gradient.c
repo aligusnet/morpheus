@@ -1,24 +1,23 @@
 #include "gradient.h"
 #include "simple_blas.h"
 
-void morpheus_numeric_gradient(morpheus_cost_f cf,
-                               const morpheus_reg_t *reg,
-                               const morpheus_data_t *data,
-                               const double *theta,
-                               double eps,
-                               double *grad,
-                               double *tmp_buffer) {
-  double *bumped_theta = tmp_buffer;
-  morpheus_dcopy(data->num_features, theta, bumped_theta);
-  tmp_buffer = &tmp_buffer[data->num_features];
-  for (int i = 0; i < data->num_features; i++) {
-    double diff = theta[i]*eps+eps;
-    bumped_theta[i] += diff;
-    grad[i] = cf(reg, data, bumped_theta, tmp_buffer);
+#include <stdlib.h>
+
+void morpheus_numeric_gradient(const morpheus_numeric_gradient_params_t *params,
+                               const double *x,
+                               void *data,
+                               double *grad) {
+  double *bumped_x = params->memory_buffer;
+  int n = params->num_variables;
+  morpheus_dcopy(n, x, bumped_x);
+  for (int i = 0; i < n; i++) {
+    double diff = x[i]*params->eps+params->eps;
+    bumped_x[i] += diff;
+    grad[i] = params->f(bumped_x, data);
     diff *= 2;
-    bumped_theta[i] -= diff;
-    grad[i] -= cf(reg, data, bumped_theta, tmp_buffer);
+    bumped_x[i] -= diff;
+    grad[i] -= params->f(bumped_x, data);
     grad[i] /= diff;
-    bumped_theta[i] = theta[i];
+    bumped_x[i] = x[i];
   }
 }

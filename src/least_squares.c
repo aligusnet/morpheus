@@ -11,7 +11,7 @@ void morpheus_ls_hypothesis(const morpheus_data_t *data,
 }
 
 
-double morpheus_ls_cost(const morpheus_reg_t *reg,
+double morpheus_ls_cost_old(const morpheus_reg_t *reg,
                         const morpheus_data_t *data,
                         const double *theta,
                         double *m) {
@@ -24,12 +24,12 @@ double morpheus_ls_cost(const morpheus_reg_t *reg,
   double v = morpheus_ddot(data->num_examples, m, m);
   double reg_term = morpheus_cost_reg(reg, data->num_features, theta);
   v = (v*0.5 + reg_term) / data->num_examples;
-  
+
   return v;
 }
 
 
-void morpheus_ls_gradient(const morpheus_reg_t *reg,
+void morpheus_ls_gradient_old(const morpheus_reg_t *reg,
                           const morpheus_data_t *data,
                           const double *theta,
                           double *grad,
@@ -45,4 +45,15 @@ void morpheus_ls_gradient(const morpheus_reg_t *reg,
   morpheus_daxpy(data->num_features, 1, reg_term, grad);
 
   morpheus_dscal(data->num_features, 1.0/data->num_examples, grad);
+}
+
+double morpheus_ls_cost(const double *theta,  /*!< vector of size data->num_features */
+                        morpheus_params_t *params) {
+  return morpheus_ls_cost_old(&params->reg, &params->data, theta, params->memory_buffer);
+}
+
+void morpheus_ls_gradient(const double *theta, /*!< vector of size data->num_features */
+                          morpheus_params_t *params,
+                          double *grad /*!< vector of size data->num_features */) {
+  morpheus_ls_gradient_old(&params->reg, &params->data, theta, grad, params->memory_buffer);
 }

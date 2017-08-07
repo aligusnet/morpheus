@@ -15,18 +15,19 @@
 
 /*! Gradient Descent Algorithm parameters */
 typedef struct {
+  morpheus_f f;             /*!< pointer to function */
+  morpheus_df df;           /*!< pointer to gradient function */
   int max_iters; /*!< maximum number of iterations allowed */
   double epsilon; /*!< desired precision of the solution */
   double alpha;  /*!< step size */
+  int num_variables;  /*!< number of variable of the function */
+  double *memory_buffer; /*!< must have at least num_variables elements */
 } morpheus_gradient_descent_params_t;
 
 /*! Gradient Descent Algorithm Implementation */
-void morpheus_gradient_descent(const morpheus_minfuncs_t *funcs,
-                               const morpheus_reg_t *reg,
-                               const morpheus_data_t *data,
-                               const morpheus_gradient_descent_params_t *params,
-                               double *theta /*!< vector of size data->num_features */,
-                               double *tmp_buffer /*!< must be at least as big as 2*theta */);
+void morpheus_gradient_descent(const morpheus_gradient_descent_params_t *params,
+                               double *theta, /*!< vector of size data->num_features */
+                               void *data);
 /* \} */
 
 #endif /* MORHEPUS_GRADIENT_DESCENT_H */

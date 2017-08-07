@@ -13,18 +13,21 @@
   \{
 */
 
+typedef struct {
+  morpheus_f f;          /*!< pointer to function to minimize */
+  int num_variables;     /*!< number of the variable of the function */
+  double eps;
+  double *memory_buffer; /*!< must holds at least num_variables elements */
+} morpheus_numeric_gradient_params_t;
 /*! \brief Calculates numerical gradient.
 
 Numerical gradient calculation is very slow and analytical method should be preferred.
 However the former is useful to test the latter.
  */
-void morpheus_numeric_gradient(morpheus_cost_f cf,
-                               const morpheus_reg_t *reg,
-                               const morpheus_data_t *data,
-                               const double *theta,
-                               double eps,
-                               double *grad,
-                               double *tmp_buffer);
+void morpheus_numeric_gradient(const morpheus_numeric_gradient_params_t *params,
+                               const double *x,
+                               void *data,
+                               double *grad);
 
 /*! \} */
 
