@@ -13,7 +13,7 @@ ifeq ($(UNAME_S),Linux)
 	ifdef OPENBLAS
 		LIBS += -lopenblas
 	else
-		LIBS += -lblas
+		LIBS += -lblas -llapack
 	endif
 endif
 ifeq ($(UNAME_S),Darwin)
@@ -84,4 +84,8 @@ clean:
 docs:
 	doxygen
 
-.PHONY: clean docs
+docker:
+	docker build -t morpheus .
+	docker run -ti -v ${PWD}:/build -w /build morpheus
+
+.PHONY: clean docs docker

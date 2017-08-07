@@ -5,6 +5,7 @@ addons:
   apt:
     packages:
     - libblas-dev
+    - liblapack-dev
 
 script:
   - make test
