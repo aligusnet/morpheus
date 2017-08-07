@@ -9,7 +9,7 @@
 #include <Accelerate/Accelerate.h>
 #else
 #include <cblas.h>
-#include <clapack.h>
+#include "lapack.h"
 #endif
 
 /*! \defgroup simple_blas simple_blas
