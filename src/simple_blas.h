@@ -9,6 +9,7 @@
 #include <Accelerate/Accelerate.h>
 #else
 #include <cblas.h>
+#include <clapack.h>
 #endif
 
 /*! \defgroup simple_blas simple_blas
@@ -74,6 +75,13 @@ double morpheus_dnrm2(const int n, const double *x);
 
 /*! Forms the dot product of two vectors. */
 double morpheus_ddot(const int n, const double *x, const double *y);
+
+/*! Compute the inverse of a given square matrix. */
+int morpheus_inverse(int n,      /*!< size of the matrix to inverse */
+                     double *x,        /*!< matrix to inverse */
+                     int *pivot,       /*!< vector of size n */
+                     double *workspace /*!< vector of size of n*n */);
+
 /*! \} */
 
 #endif  /* MORHEPUS_SIMPLE_BLAS_H */

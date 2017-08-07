@@ -158,6 +158,7 @@ extern void test_row_max_index();
 extern void test_row_min_index();
 extern void test_column_sum();
 extern void test_row_sum();
+extern void test_inverse();
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
@@ -172,6 +173,7 @@ int main (int argc, char **argv) {
   RUN_TEST(test_row_min_index);
   RUN_TEST(test_column_sum);
   RUN_TEST(test_row_sum);
+  RUN_TEST(test_inverse);
 
   return (UnityEnd());
 }

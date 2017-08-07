@@ -36,3 +36,16 @@ double morpheus_ddot(const int n, const double *x, const double *y) {
   const int inc = 1;
   return cblas_ddot(n, x, inc, y, inc);
 }
+
+int morpheus_inverse(int n, double *x, int *pivot, double *workspace) {
+  workspace = workspace+n;
+  int lwork = n*n;
+
+  int rc;
+  dgetrf_(&n, &n, x, &n, pivot, &rc);
+  if (rc != 0) {
+    return rc;
+  }
+  dgetri_(&n, x, &n, pivot, workspace, &lwork, &rc);
+  return rc;
+}
