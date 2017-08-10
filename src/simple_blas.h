@@ -5,12 +5,6 @@
 #ifndef MORHEPUS_SIMPLE_BLAS_H
 #define MORHEPUS_SIMPLE_BLAS_H
 
-#ifdef ACCELERATE
-#include <Accelerate/Accelerate.h>
-#else
-#include <cblas.h>
-#include "lapack.h"
-#endif
 
 /*! \defgroup simple_blas simple_blas
   \brief Simple Wrappers around BLAS functions
@@ -20,15 +14,15 @@
 
 /*! Whether to transpose matrix */
 typedef enum {
-    morpheus_no_trans = CblasNoTrans,
-    morpheus_trans = CblasTrans
+    morpheus_no_trans = 11,
+    morpheus_trans
 } morpheus_transpose_e;
 
 
 /*! Matrix Layout */
 typedef enum {
-  morpheus_row_major = CblasRowMajor,  /*!< C-style layout */
-  morpheus_col_major = CblasColMajor   /*!< Fortran-style layout */
+  morpheus_row_major = 21,  /*!< C-style layout */
+  morpheus_col_major        /*!< Fortran-style layout */
 } morpheus_layout_e;
 
 
