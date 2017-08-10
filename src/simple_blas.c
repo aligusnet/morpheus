@@ -49,3 +49,15 @@ int morpheus_inverse(int n, double *x, int *pivot, double *workspace) {
   dgetri_(&n, x, &n, pivot, workspace, &lwork, &rc);
   return rc;
 }
+
+void morpheus_dger(const morpheus_layout_e layout,
+                   const int nrows,
+                   const int ncols,
+                   const double alpha,
+                   const double *x,
+                   const double *y,
+                   double *a) {
+  const int inc = 1;
+  const int lda = layout == morpheus_row_major ? ncols : nrows;
+  cblas_dger((int)layout, nrows, ncols, alpha, x, inc, y, inc, a, lda);
+}

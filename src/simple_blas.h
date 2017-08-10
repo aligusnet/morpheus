@@ -82,6 +82,16 @@ int morpheus_inverse(int n,      /*!< size of the matrix to inverse */
                      int *pivot,       /*!< vector of size n */
                      double *workspace /*!< vector of size of n*n */);
 
+/*!
+  A = alpha * x * yT + A
+*/
+void morpheus_dger(const morpheus_layout_e layout,
+                   const int nrows,
+                   const int ncols,
+                   const double alpha,
+                   const double *x,
+                   const double *y,
+                   double *a);
 /*! \} */
 
 #endif  /* MORHEPUS_SIMPLE_BLAS_H */
