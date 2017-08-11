@@ -114,6 +114,10 @@ void morpheus_dgemm(const morpheus_layout_e layout,
                    const double *b,
                    const double beta,
                    double *c);
+
+/*! Creates identity matrix */
+void morpheus_identity(const int n, double *a);
+
 /*! \} */
 
 #endif  /* MORHEPUS_SIMPLE_BLAS_H */

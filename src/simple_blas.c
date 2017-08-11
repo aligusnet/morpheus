@@ -119,3 +119,11 @@ void morpheus_dgemm(const morpheus_layout_e layout,
               to_cblas_transpose(trans_a), to_cblas_transpose(trans_b),
               m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
 }
+
+void morpheus_identity(const int n, double *a) {
+  const int m = n*n;
+  const double zero = 0;
+  const double one = 1;
+  cblas_dcopy(m, &zero, 0, a, 1);
+  cblas_dcopy(n, &one, 0, a, n+1);
+}

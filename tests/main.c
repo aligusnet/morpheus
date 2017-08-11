@@ -33,6 +33,7 @@ extern void test_dnrm2();
 extern void test_ddot();
 extern void test_dscal();
 extern void test_daxpy();
+extern void test_identity();
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
@@ -69,6 +70,7 @@ int main (int argc, char **argv) {
   RUN_TEST(test_dnrm2);
   RUN_TEST(test_dscal);
   RUN_TEST(test_daxpy);
+  RUN_TEST(test_identity);
 
   return (UnityEnd());
 }

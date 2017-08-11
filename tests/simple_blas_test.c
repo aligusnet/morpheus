@@ -307,3 +307,21 @@ void test_daxpy() {
   morpheus_daxpy(n, alpha, x, y);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y, y, n);
 }
+
+void test_identity() {
+  int n = 7;
+  double identity[100];
+  double expected[100] = {1, 0, 0, 0, 0, 0, 0,
+                       0, 1, 0, 0, 0, 0, 0,
+                       0, 0, 1, 0, 0, 0, 0,
+                       0, 0, 0, 1, 0, 0, 0,
+                       0, 0, 0, 0, 1, 0, 0,
+                       0, 0, 0, 0, 0, 1, 0,
+                       0, 0, 0, 0, 0, 0, 1};
+  for (int i = 49; i < 100; ++i) {
+    identity[i] = expected[i] = 100+i; // guard values
+  }
+
+  morpheus_identity(n, identity);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected, identity, 100);
+}

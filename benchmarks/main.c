@@ -1,4 +1,5 @@
 #include "bench_matrix_map.h"
+#include "bench_simple_blas.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -11,6 +12,7 @@ int main(int argc, char **argv) {
     x[i] = rand();
   }
 
+  /* maxtrix_map */
   bench_column_pred(n, "column_pred_max - row_major", fmax, morpheus_row_major, size, x);
   bench_column_pred(n, "column_pred_max - col_major", fmax, morpheus_col_major, size, x);
 
@@ -34,6 +36,10 @@ int main(int argc, char **argv) {
 
   bench_row_sum(n, "row_sum - row_major", morpheus_row_major, size, x);
   bench_row_sum(n, "row_sum - col_major", morpheus_col_major, size, x);
+
+  /* simple_blas */
+  bench_morpheus_identity(n, "morpheus_identity", size);
+  bench_morpheus_identity(n, "manual_identity", size);
 
   free(x);
   return 0;
