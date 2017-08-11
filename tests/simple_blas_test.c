@@ -112,9 +112,9 @@ void test_gemm_rm_notransp() {
 }
 
 void test_gemm_cm_notransp() {
-  double a[] = {1, 4,
-                2, 5,
-                3, 6};
+  double a[] = {-2, -8,
+                -4, -10,
+                -6, -12};
   double b[] = {7, 8, 9,
                 10, 11, 12,
                 13, 14, 15,
@@ -126,7 +126,7 @@ void test_gemm_cm_notransp() {
   int m = 2;
   int n = 4;
   int k = 3;
-  double alpha = 1;
+  double alpha = -0.5;
   double beta = -1;
 
   double expected_c[] = {40, 72,
@@ -185,4 +185,70 @@ void test_gemm_cm_transp() {
   morpheus_dgemm(morpheus_col_major, morpheus_trans, morpheus_no_trans,
                  m, n, k, alpha, a, b, beta, c);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_c, c, m*n);
+}
+
+void test_gemv_rm_notransp() {
+  double a[] = {1, 2, 3,
+                4, 5, 6};
+  double x[] = {-14, -16, -18};
+  double y[] = {2, 4};
+  int nrows = 2;
+  int ncols = 3;
+  double alpha = -0.5;
+  double beta = -5;
+
+  double expected_y[] = {40, 102};
+  morpheus_dgemv(morpheus_row_major, morpheus_no_trans, nrows, ncols,
+                 alpha, a, x, beta, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y, y, nrows);
+}
+
+void test_gemv_cm_notransp() {
+  double a[] = {1, 4,
+                2, 5,
+                3, 6};
+  double x[] = {-14, -16, -18};
+  double y[] = {2, 4};
+  int nrows = 2;
+  int ncols = 3;
+  double alpha = -0.5;
+  double beta = -5;
+
+  double expected_y[] = {40, 102};
+  morpheus_dgemv(morpheus_col_major, morpheus_no_trans, nrows, ncols,
+                 alpha, a, x, beta, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y, y, nrows);
+}
+
+void test_gemv_rm_transp() {
+  double a[] = {1, 4,
+                2, 5,
+                3, 6};
+  double x[] = {-14, -16, -18};
+  double y[] = {2, 4};
+  int nrows = 3;
+  int ncols = 2;
+  double alpha = -0.5;
+  double beta = -5;
+
+  double expected_y[] = {40, 102};
+  morpheus_dgemv(morpheus_row_major, morpheus_trans, nrows, ncols,
+                 alpha, a, x, beta, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y, y, ncols);
+}
+
+void test_gemv_cm_transp() {
+  double a[] = {1, 2, 3,
+                4, 5, 6};
+  double x[] = {-14, -16, -18};
+  double y[] = {2, 4};
+  int nrows = 3;
+  int ncols = 2;
+  double alpha = -0.5;
+  double beta = -5;
+
+  double expected_y[] = {40, 102};
+  morpheus_dgemv(morpheus_col_major, morpheus_trans, nrows, ncols,
+                 alpha, a, x, beta, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y, y, ncols);
 }

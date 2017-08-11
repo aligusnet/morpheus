@@ -40,7 +40,9 @@ void morpheus_dcopy(const int n, const double *x, double *y);
   where alpha and beta are scalars, x and y are vectors and A is an
   nrows by ncols matrix.
 
-  Assumes row-major ordering of matrix A.
+  A = nrows x ncols;
+  x = trans == no ? ncols : nrows;
+  y = trans == no ? nrows : ncols;
 */
 void morpheus_dgemv(const morpheus_layout_e layout,
                     const morpheus_transpose_e trans, /*!< Specifies whether to transpose matrix A */
