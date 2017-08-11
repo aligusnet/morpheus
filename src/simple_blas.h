@@ -86,6 +86,25 @@ void morpheus_dger(const morpheus_layout_e layout,
                    const double *x,
                    const double *y,
                    double *a);
+
+/*!
+  C = alpha * op(A) * op(B) + beta*C;
+
+  op(A) - m x k;
+  op(B) - k x n;
+  C - m x n.
+*/
+void morpheus_dgemm(const morpheus_layout_e layout,
+                   const morpheus_transpose_e trans_a,
+                   const morpheus_transpose_e trans_b,
+                   const int m,
+                   const int n,
+                   const int k,
+                   const double alpha,
+                   const double *a,
+                   const double *b,
+                   const double beta,
+                   double *c);
 /*! \} */
 
 #endif  /* MORHEPUS_SIMPLE_BLAS_H */

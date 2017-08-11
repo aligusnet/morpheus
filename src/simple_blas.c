@@ -7,7 +7,7 @@
 #include "lapack.h"
 #endif
 
-int to_cblas_transpose(morpheus_transpose_e trans) {
+int to_cblas_transpose(const morpheus_transpose_e trans) {
   switch (trans) {
   case morpheus_no_trans:
     return CblasNoTrans;
@@ -17,7 +17,7 @@ int to_cblas_transpose(morpheus_transpose_e trans) {
   return 0;
 }
 
-int to_cblas_layout(morpheus_layout_e layout) {
+int to_cblas_layout(const morpheus_layout_e layout) {
   switch (layout) {
   case morpheus_row_major:
     return CblasRowMajor;
@@ -88,4 +88,30 @@ void morpheus_dger(const morpheus_layout_e layout,
   const int lda = layout == morpheus_row_major ? ncols : nrows;
   cblas_dger(to_cblas_layout(layout), nrows, ncols,
                              alpha, x, inc, y, inc, a, lda);
+}
+
+void morpheus_dgemm(const morpheus_layout_e layout,
+                    const morpheus_transpose_e trans_a,
+                    const morpheus_transpose_e trans_b,
+                    const int m,
+                    const int n,
+                    const int k,
+                    const double alpha,
+                    const double *a,
+                    const double *b,
+                    const double beta,
+                    double *c) {
+  int lda, ldb, ldc;
+  if (layout == morpheus_row_major) {
+    lda = trans_a == morpheus_no_trans ? k : m;
+    ldb = trans_b == morpheus_no_trans ? n : k;
+    ldc = n;
+  } else {
+    lda = trans_a == morpheus_no_trans ? m : k;
+    ldb = trans_b == morpheus_no_trans ? k : n;
+    ldc = m;
+  }
+  cblas_dgemm(to_cblas_layout(layout),
+              to_cblas_transpose(trans_a), to_cblas_transpose(trans_b),
+              m, n, k, alpha, a, lda, b, ldb, beta, c, ldc);
 }

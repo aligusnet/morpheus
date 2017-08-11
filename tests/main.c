@@ -17,6 +17,10 @@ extern void test_ger_rm();
 extern void test_ger_cm();
 extern void test_ger_rm_nonsquare();
 extern void test_ger_cm_nonsquare();
+extern void test_gemm_rm_notransp();
+extern void test_gemm_cm_notransp();
+extern void test_gemm_rm_transp();
+extern void test_gemm_cm_transp();
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
@@ -37,6 +41,10 @@ int main (int argc, char **argv) {
   RUN_TEST(test_ger_cm);
   RUN_TEST(test_ger_rm_nonsquare);
   RUN_TEST(test_ger_cm_nonsquare);
+  RUN_TEST(test_gemm_rm_notransp);
+  RUN_TEST(test_gemm_cm_notransp);
+  RUN_TEST(test_gemm_rm_transp);
+  RUN_TEST(test_gemm_cm_transp);
 
   return (UnityEnd());
 }

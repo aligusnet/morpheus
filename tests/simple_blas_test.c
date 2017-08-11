@@ -89,3 +89,100 @@ void test_ger_cm_nonsquare() {
   morpheus_dger(morpheus_col_major, m, n, alpha, x, y, a);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_a, a, m*n);
 }
+
+void test_gemm_rm_notransp() {
+  double a[] = {1, 2, 3,
+                4, 5, 6};
+  double b[] = {7, 10, 13, 16,
+                8, 11, 14, 17,
+                9, 12, 15, 18};
+  double c[] = {10, 20, 30, 40,
+                50, 60, 70, 80};
+  int m = 2;
+  int n = 4;
+  int k = 3;
+  double alpha = 1;
+  double beta = -1;
+
+  double expected_c[] = {40, 48, 56, 64,
+                         72, 107, 142, 177};
+  morpheus_dgemm(morpheus_row_major, morpheus_no_trans, morpheus_no_trans,
+                 m, n, k, alpha, a, b, beta, c);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_c, c, m*n);
+}
+
+void test_gemm_cm_notransp() {
+  double a[] = {1, 4,
+                2, 5,
+                3, 6};
+  double b[] = {7, 8, 9,
+                10, 11, 12,
+                13, 14, 15,
+                16, 17, 18};
+  double c[] = {10, 50,
+                20, 60,
+                30, 70,
+                40, 80};
+  int m = 2;
+  int n = 4;
+  int k = 3;
+  double alpha = 1;
+  double beta = -1;
+
+  double expected_c[] = {40, 72,
+                         48, 107,
+                         56, 142,
+                         64, 177};
+  morpheus_dgemm(morpheus_col_major, morpheus_no_trans, morpheus_no_trans,
+                 m, n, k, alpha, a, b, beta, c);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_c, c, m*n);
+}
+
+void test_gemm_rm_transp() {
+  double a[] = {1, 4,
+                2, 5,
+                3, 6};
+  double b[] = {7, 8, 9,
+                10, 11, 12,
+                13, 14, 15,
+                16, 17, 18};
+  double c[] = {10, 20, 30, 40,
+                50, 60, 70, 80};
+  int m = 2;
+  int n = 4;
+  int k = 3;
+  double alpha = 1;
+  double beta = -1;
+
+  double expected_c[] = {40, 48, 56, 64,
+                         72, 107, 142, 177};
+  morpheus_dgemm(morpheus_row_major, morpheus_trans, morpheus_trans,
+                 m, n, k, alpha, a, b, beta, c);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_c, c, m*n);
+}
+
+void test_gemm_cm_transp() {
+  double a[] = {1, 2, 3,
+                4, 5, 6};
+  double b[] = {7, 8, 9,
+                10, 11, 12,
+                13, 14, 15,
+                16, 17, 18};
+  double c[] = {1, 5,
+                2, 6,
+                3, 7,
+                4, 8};
+  int m = 2;
+  int n = 4;
+  int k = 3;
+  double alpha = 1;
+  double beta = -10;
+
+  double expected_c[] = {40, 72,
+                         48, 107,
+                         56, 142,
+                         64, 177};
+  morpheus_dgemm(morpheus_col_major, morpheus_trans, morpheus_no_trans,
+                 m, n, k, alpha, a, b, beta, c);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_c, c, m*n);
+}
