@@ -34,6 +34,11 @@ void morpheus_dscal(const int n, const double alpha, double *x);
 void morpheus_dcopy(const int n, const double *x, double *y);
 
 
+/*! Fills vector x with values of scalar alpha. */
+void morpheus_dcopy_scalar(const int n, const double alpha, double *x);
+
+
+
 /*! Performs one of the matrix-vector operations.
   y = alpha*A*x + beta*y,   or   y = alpha*A**T*x + beta*y,
 
@@ -69,8 +74,10 @@ void morpheus_daxpy(const int n,          /*!< number of elements in vectors x a
 */
 double morpheus_dnrm2(const int n, const double *x);
 
+
 /*! Forms the dot product of two vectors. */
 double morpheus_ddot(const int n, const double *x, const double *y);
+
 
 /*! Compute the inverse of a given square matrix. */
 int morpheus_inverse(int n,      /*!< size of the matrix to inverse */

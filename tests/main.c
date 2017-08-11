@@ -11,8 +11,10 @@ extern void test_row_max_index();
 extern void test_row_min_index();
 extern void test_column_sum();
 extern void test_row_sum();
-extern void test_inverse();
 extern void test_wolfe();
+
+// simple_blas_test
+extern void test_inverse();
 extern void test_ger_rm();
 extern void test_ger_cm();
 extern void test_ger_rm_nonsquare();
@@ -25,6 +27,12 @@ extern void test_gemv_rm_notransp();
 extern void test_gemv_cm_notransp();
 extern void test_gemv_rm_transp();
 extern void test_gemv_cm_transp();
+extern void test_dcopy();
+extern void test_dcopy_scalar();
+extern void test_dnrm2();
+extern void test_ddot();
+extern void test_dscal();
+extern void test_daxpy();
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
@@ -39,8 +47,10 @@ int main (int argc, char **argv) {
   RUN_TEST(test_row_min_index);
   RUN_TEST(test_column_sum);
   RUN_TEST(test_row_sum);
-  RUN_TEST(test_inverse);
   RUN_TEST(test_wolfe);
+
+  // simple_blas_test
+  RUN_TEST(test_inverse);
   RUN_TEST(test_ger_rm);
   RUN_TEST(test_ger_cm);
   RUN_TEST(test_ger_rm_nonsquare);
@@ -53,6 +63,12 @@ int main (int argc, char **argv) {
   RUN_TEST(test_gemv_cm_notransp);
   RUN_TEST(test_gemv_rm_transp);
   RUN_TEST(test_gemv_cm_transp);
+  RUN_TEST(test_dcopy);
+  RUN_TEST(test_dcopy_scalar);
+  RUN_TEST(test_ddot);
+  RUN_TEST(test_dnrm2);
+  RUN_TEST(test_dscal);
+  RUN_TEST(test_daxpy);
 
   return (UnityEnd());
 }

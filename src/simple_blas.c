@@ -37,6 +37,10 @@ void morpheus_dcopy(const int n, const double *x, double *y) {
   cblas_dcopy(n, x, inc, y, inc);
 }
 
+void morpheus_dcopy_scalar(const int n, const double alpha, double *x) {
+  cblas_dcopy(n, &alpha, 0, x, 1);
+}
+
 void morpheus_dgemv(const morpheus_layout_e layout,
                     const morpheus_transpose_e trans,
                     const int nrows, const int ncols,

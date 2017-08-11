@@ -252,3 +252,58 @@ void test_gemv_cm_transp() {
                  alpha, a, x, beta, y);
   TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y, y, ncols);
 }
+
+void test_dcopy() {
+  double x[] = {11, -2, 13, -4, 15, -6};
+  double y[6];
+  int n = 6;
+  morpheus_dcopy(n, x, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(x, y, n);
+}
+
+void test_dcopy_scalar() {
+  double alpha = 11;
+  double x[6];
+  int n = 6;
+
+  morpheus_dcopy_scalar(n, alpha, x);
+  TEST_ASSERT_EACH_EQUAL_DOUBLE(alpha, x, n);
+}
+
+void test_ddot() {
+  double x[] = {7, 13, 11, 19, 17};
+  double y[] = {3, 17, 21, 29, 33};
+  int n = sizeof(x)/sizeof(x[0]);
+
+  double expected = 7*3 + 13*17 + 11*21 + 19*29 + 17*33;
+  TEST_ASSERT_EQUAL_DOUBLE(expected, morpheus_ddot(n, x, y));
+}
+
+void test_dnrm2() {
+  double x[] = {-1, -5, 7, 11, 1, -3, -9, 10, 5, -6, -9};
+  int n = sizeof(x)/sizeof(x[0]);
+
+  double expected = 23;
+  TEST_ASSERT_EQUAL_DOUBLE(expected, morpheus_dnrm2(n, x));
+}
+
+void test_dscal() {
+  double x[] = {1, 2, 3, 4, 5};
+  double alpha = 3;
+  double expected_x[] = {3, 6, 9, 12, 15};
+  int n = sizeof(x)/sizeof(x[0]);
+
+  morpheus_dscal(n, alpha, x);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_x, x, n);
+}
+
+void test_daxpy() {
+  double x[] = {1, 2, 3, 4, 5, 6, 7};
+  double y[] = {-1, 1, -1, 1, -1, 1, -1};
+  double alpha = -1;
+  int n = sizeof(x)/sizeof(x[0]);
+
+  double expected_y[] = {-2, -1, -4, -3, -6, -5, -8};
+  morpheus_daxpy(n, alpha, x, y);
+  TEST_ASSERT_EQUAL_DOUBLE_ARRAY(expected_y, y, n);
+}
