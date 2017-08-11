@@ -37,9 +37,14 @@ int main(int argc, char **argv) {
   bench_row_sum(n, "row_sum - row_major", morpheus_row_major, size, x);
   bench_row_sum(n, "row_sum - col_major", morpheus_col_major, size, x);
 
+
   /* simple_blas */
   bench_morpheus_identity(n, "morpheus_identity", size);
   bench_morpheus_identity(n, "manual_identity", size);
+
+  bench_morpheus_dcopy(n, "morpheus_dcopy", size, x);
+  bench_manual_dcopy(n, "manual_dcopy", size, x);
+
 
   free(x);
   return 0;
