@@ -1,5 +1,6 @@
 #include "bench_matrix_map.h"
 #include "bench_simple_blas.h"
+#include "bench_activation.h"
 
 #include <stdlib.h>
 #include <math.h>
@@ -44,6 +45,11 @@ int main(int argc, char **argv) {
 
   bench_morpheus_dcopy(n, "morpheus_dcopy", size, x);
   bench_manual_dcopy(n, "manual_dcopy", size, x);
+
+
+  /* activation */
+  bench_sigmoid(n, "morpheus_sigmoid", size, x);
+  bench_sigmoid_gradient(n, "morpheus_sigmoid_gradient", size, x);
 
 
   free(x);

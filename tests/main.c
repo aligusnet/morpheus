@@ -35,6 +35,10 @@ extern void test_dscal();
 extern void test_daxpy();
 extern void test_identity();
 
+// activation
+extern void test_sigmoid();
+extern void test_sigmoid_gradient();
+
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
   RUN_TEST(test_least_squares);
@@ -71,6 +75,10 @@ int main (int argc, char **argv) {
   RUN_TEST(test_dscal);
   RUN_TEST(test_daxpy);
   RUN_TEST(test_identity);
+
+  // activation
+  RUN_TEST(test_sigmoid);
+  RUN_TEST(test_sigmoid_gradient);
 
   return (UnityEnd());
 }
