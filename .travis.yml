@@ -13,7 +13,7 @@ cache:
   - $HOME/.stack
 
 env:
-  - ARGS="--resolver lts-9.2"  GHCVER=8.0.1
+  - ARGS="--resolver lts-9.1"  GHCVER=8.0.1
 
 before_install:
 # Download and unpack the stack executable
