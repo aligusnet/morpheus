@@ -3,6 +3,7 @@ module Test.HUnit.Plus
     assertMaybeDouble
   , assertOnFunction
   , assertVector
+  , assertVectorI
   , assertMatrix
 )
 where
@@ -26,12 +27,18 @@ assertOnFunction func expected actual = func expected @=? func actual
 assertVector :: String -> R -> Vector R -> Vector R -> Assertion
 assertVector message eps expected actual =
   let diff = norm_2 (expected-actual)
-      msg = message ++ "\nexpected: " ++ show expected ++ "\nbut got" ++ show actual
+      msg = message ++ "\nexpected: " ++ show expected ++ "\nbut got: " ++ show actual
   in unless (diff < eps) (assertFailure msg)
+
+assertVectorI :: String -> Vector I -> Vector I -> Assertion
+assertVectorI message expected actual =
+  let diff = norm_2 (expected-actual)
+      msg = message ++ "\nexpected: " ++ show expected ++ "\nbut got: " ++ show actual
+  in unless (diff == 0) (assertFailure msg)
 
 assertMatrix :: String -> R -> Matrix R -> Matrix R -> Assertion
 assertMatrix message eps expected actual =
   let diff = norm_2 (expected-actual)
-      msg = message ++ "\nexpected: " ++ show expected ++ "\nbut got" ++ show actual
+      msg = message ++ "\nexpected: " ++ show expected ++ "\nbut got: " ++ show actual
   in unless (diff < eps) (assertFailure msg)
 
