@@ -15,6 +15,7 @@ cabal-version:       >=1.10
 extra-source-files:  src/types.h
                    , src/simple_blas.h
                    , src/matrix_map.h
+                   , src/activation.h
 
 flag openblas
   description:    Link with OpenBLAS (https://github.com/xianyi/OpenBLAS) optimized libraries.
@@ -24,6 +25,7 @@ flag openblas
 library
   hs-source-dirs:      hmatrix-morpheus/src
   exposed-modules:     Numeric.Morpheus
+                     , Numeric.Morpheus.Activation
   build-depends:       base >= 4.7 && < 5
                      , hmatrix
   default-language:    Haskell2010
@@ -31,6 +33,7 @@ library
   include-dirs:        src
   C-sources:           src/simple_blas.c
                      , src/matrix_map.c
+                     , src/activation.c
   cc-options:         -O3 -Wall -std=c99
   if arch(x86_64)
     cc-options:       -msse2
@@ -64,6 +67,7 @@ test-suite hmatrix-morpheus-test
   other-modules:       Test.HUnit.Approx
                      , Test.HUnit.Plus
                      , Numeric.MorpheusTest
+                     , Numeric.Morpheus.ActivationTest
   build-depends:       base
                      , hmatrix-morpheus
                      , hmatrix
