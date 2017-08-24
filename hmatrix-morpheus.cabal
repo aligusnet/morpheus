@@ -31,7 +31,7 @@ library
   include-dirs:        src
   C-sources:           src/simple_blas.c
                      , src/matrix_map.c
-  cc-options:         -O4 -Wall -std=c99
+  cc-options:         -O3 -Wall -std=c99
   if arch(x86_64)
     cc-options:       -msse2
   if arch(i386)
