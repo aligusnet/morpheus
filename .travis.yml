@@ -30,7 +30,7 @@ install:
 
 script:
   - make test
-  - stack --no-terminal $ARGS test :mltool-test --test-arguments="--plain" --haddock --no-haddock-deps --coverage
+  - stack --no-terminal $ARGS test :hmatrix-morpheus-test --test-arguments="--plain" --haddock --no-haddock-deps --coverage
 
 after_success:
   - make bench
