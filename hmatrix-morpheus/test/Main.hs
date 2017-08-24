@@ -1,8 +1,8 @@
 import Test.Framework (defaultMain, testGroup)
 
-import qualified Numeric.LinearAlgebra.MorpheusTest as LAMorpheus
+import qualified Numeric.MorpheusTest as Morpheus
 
 main = defaultMain tests
 
-tests = [testGroup "LinearAlgebra.Morpheus" LAMorpheus.tests
+tests = [testGroup "Morpheus" Morpheus.tests
         ]

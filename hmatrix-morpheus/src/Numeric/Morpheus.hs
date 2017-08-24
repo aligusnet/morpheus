@@ -1,5 +1,5 @@
 {-|
-Module: Numeric.LinearAlgebra.Morpheus
+Module: Numeric.Morpheus
 Description: Low-level machine learning auxiliary functions
 Copyright: (c) Alexander Ignatyev, 2017
 License: BSD-3
@@ -7,7 +7,7 @@ Stability: experimental
 Portability: POSIX
 -}
 
-module Numeric.LinearAlgebra.Morpheus
+module Numeric.Morpheus
 (
   columnSum
   , rowSum
