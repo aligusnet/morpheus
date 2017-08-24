@@ -1,6 +1,6 @@
 name:                hmatrix-morpheus
 version:             0.1.0.0
--- synopsis:
+synopsis:            Low-level machine learning auxiliary functions.
 -- description:
 homepage:            https://github.com/alexander-ignatyev/morpheus
 license:             BSD3
@@ -12,21 +12,62 @@ category:            math
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
+extra-source-files:  src/types.h
+                   , src/simple_blas.h
+                   , src/matrix_map.h
+
+flag openblas
+  description:    Link with OpenBLAS (https://github.com/xianyi/OpenBLAS) optimized libraries.
+  default:        False
+  manual: True
 
 library
   hs-source-dirs:      hmatrix-morpheus/src
   exposed-modules:     Numeric
+                     , Numeric.LinearAlgebra.Morpheus
   build-depends:       base >= 4.7 && < 5
                      , hmatrix
   default-language:    Haskell2010
+  default-extensions:  ForeignFunctionInterface
+  include-dirs:        src
+  C-sources:           src/simple_blas.c
+                     , src/matrix_map.c
+  cc-options:         -O4 -Wall
+  if arch(x86_64)
+    cc-options:       -msse2
+  if arch(i386)
+    cc-options:       -msse2
 
+  if os(OSX)
+    frameworks:       Accelerate
+    cc-options:       -DACCELERATE
+    extra-lib-dirs:   /opt/local/lib/
+    include-dirs:     /opt/local/include/
+    extra-lib-dirs:   /usr/local/lib/
+    include-dirs:     /usr/local/include/
+    if arch(i386)
+      cc-options:     -arch i386
+
+  if os(linux)
+    if flag(openblas)
+      extra-lib-dirs:     /usr/lib/openblas/lib
+      extra-libraries:    openblas
+    else
+      extra-libraries:    blas lapack
+
+    if arch(x86_64)
+      cc-options: -fPIC
 
 test-suite hmatrix-morpheus-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      hmatrix-morpheus/test
   main-is:             Main.hs
+  other-modules:       Test.HUnit.Approx
+                     , Test.HUnit.Plus
+                     , Numeric.LinearAlgebra.MorpheusTest
   build-depends:       base
                      , hmatrix-morpheus
+                     , hmatrix
                      , MonadRandom >= 0.4.2.3
                      , test-framework >= 0.8.1.1
                      , test-framework-hunit >= 0.3.0.2
@@ -37,4 +78,4 @@ test-suite hmatrix-morpheus-test
 
 source-repository head
   type:     git
-  location: https://github.com/alexander-ignatyev/hmatrix
+  location: https://github.com/alexander-ignatyev/morpheus
