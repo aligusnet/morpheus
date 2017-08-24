@@ -44,3 +44,16 @@ make docs
 ```
 
 *requires [doxygen](http://www.doxygen.org/)*
+
+
+## Build hmatrix-morpheus
+
+```
+stack build
+```
+
+### Build and run unit tests
+
+```
+stack test
+```
