@@ -4,11 +4,33 @@ language: c
 addons:
   apt:
     packages:
+    - libgmp-dev
     - libblas-dev
     - liblapack-dev
 
+cache:
+  directories:
+  - $HOME/.stack
+
+env:
+  - ARGS="--resolver lts-9.2"  GHCVER=8.0.1
+
+before_install:
+# Download and unpack the stack executable
+- mkdir -p ~/.local/bin
+- export PATH=$HOME/.local/bin:$PATH
+- travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+
+
+install:
+- stack --no-terminal $ARGS setup
+- stack --no-terminal $ARGS install hscolour
+- stack $ARGS ghc -- --version
+
+
 script:
   - make test
+  - stack --no-terminal $ARGS test :mltool-test --test-arguments="--plain" --haddock --no-haddock-deps --coverage
 
 after_success:
   - make bench
