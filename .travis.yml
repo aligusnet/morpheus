@@ -34,3 +34,4 @@ script:
 
 after_success:
   - make bench
+  - stack bench
