@@ -1,10 +1,12 @@
 name:                hmatrix-morpheus
-version:             0.1.0.1
+version:             0.1.0.2
 synopsis:            Low-level machine learning auxiliary functions.
 description:
   Purely functional interface to morpheus based on hmatrix.
   Morpheus library contains a bunch of cache line aware numerical algorithms
   suitable for using as a low-level primitives to build machine learning applications.
+  .
+  Examples are in "Numeric.Morpheus" module.
 homepage:            https://github.com/Alexander-Ignatyev/morpheus/tree/master/hmatrix-morpheus
 license:             BSD3
 license-file:        LICENSE
@@ -33,7 +35,7 @@ library
                      , Numeric.Morpheus.Activation
                      , Numeric.Morpheus.MatrixReduce
   build-depends:       base >= 4.7 && < 5
-                     , hmatrix
+                     , hmatrix >= 0.17.0.1
   default-language:    Haskell2010
   default-extensions:  ForeignFunctionInterface
   include-dirs:        src
@@ -76,7 +78,7 @@ test-suite hmatrix-morpheus-test
                      , Numeric.Morpheus.MatrixReduceTest
   build-depends:       base
                      , hmatrix-morpheus
-                     , hmatrix
+                     , hmatrix >= 0.17.0.1
                      , MonadRandom >= 0.4.2.3
                      , test-framework >= 0.8.1.1
                      , test-framework-hunit >= 0.3.0.2
@@ -92,7 +94,7 @@ benchmark hmatrix-morpheus-bench
   other-modules:       Naive
   build-depends:       base
                      , hmatrix-morpheus
-                     , hmatrix
+                     , hmatrix >= 0.17.0.1
                      , criterion
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
@@ -105,7 +107,7 @@ executable hmatrix-morpheus-example
   main-is:             Main.hs
   build-depends:       base
                      , hmatrix-morpheus
-                     , hmatrix
+                     , hmatrix >= 0.17.0.1
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
