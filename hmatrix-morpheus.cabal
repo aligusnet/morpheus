@@ -1,11 +1,11 @@
 name:                hmatrix-morpheus
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            Low-level machine learning auxiliary functions.
 description:
   Purely functional interface to morpheus based on hmatrix.
   Morpheus library contains a bunch of cache line aware numerical algorithms
   suitable for using as a low-level primitives to build machine learning applications.
-homepage:            https://github.com/alexander-ignatyev/morpheus
+homepage:            https://github.com/Alexander-Ignatyev/morpheus/tree/master/hmatrix-morpheus
 license:             BSD3
 license-file:        LICENSE
 author:              Alexander Ignatyev
@@ -13,9 +13,11 @@ maintainer:          ignatyev.alexander@gmail.com
 copyright:           Alexander Ignatyev
 category:            math
 build-type:          Simple
-extra-source-files:  hmatrix-morpheus/README.md hmatrix-morpheus/CHANGELOG.md
+extra-source-files:  hmatrix-morpheus/README.md
+                   , hmatrix-morpheus/CHANGELOG.md
 cabal-version:       >=1.10
 extra-source-files:  src/types.h
+                   , src/lapack.h
                    , src/simple_blas.h
                    , src/matrix_reduce.h
                    , src/activation.h
