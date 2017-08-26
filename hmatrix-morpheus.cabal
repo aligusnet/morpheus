@@ -13,7 +13,7 @@ maintainer:          ignatyev.alexander@gmail.com
 copyright:           Alexander Ignatyev
 category:            math
 build-type:          Simple
-extra-source-files:  hmatrix-morpheus/README.md
+extra-source-files:  hmatrix-morpheus/README.md hmatrix-morpheus/CHANGELOG.md
 cabal-version:       >=1.10
 extra-source-files:  src/types.h
                    , src/simple_blas.h
