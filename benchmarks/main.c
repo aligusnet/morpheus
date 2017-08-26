@@ -51,6 +51,12 @@ int main(int argc, char **argv) {
   bench_sigmoid(n, "morpheus_sigmoid", size, x);
   bench_sigmoid_gradient(n, "morpheus_sigmoid_gradient", size, x);
 
+  bench_relu(n, "morpheus_ReLu", size, x);
+  bench_relu_gradient(n, "morpheus_ReLu_gradient", size, x);
+
+  bench_tanh(n, "morpheus_tanh", size, x);
+  bench_tanh_gradient(n, "morpheus_tanh_gradient", size, x);
+
 
   free(x);
   return 0;

@@ -38,6 +38,10 @@ extern void test_identity();
 // activation
 extern void test_sigmoid();
 extern void test_sigmoid_gradient();
+extern void test_relu();
+extern void test_relu_gradient();
+extern void test_tanh();
+extern void test_tanh_gradient();
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
@@ -79,6 +83,10 @@ int main (int argc, char **argv) {
   // activation
   RUN_TEST(test_sigmoid);
   RUN_TEST(test_sigmoid_gradient);
+  RUN_TEST(test_relu);
+  RUN_TEST(test_relu_gradient);
+  RUN_TEST(test_tanh);
+  RUN_TEST(test_tanh_gradient);
 
   return (UnityEnd());
 }

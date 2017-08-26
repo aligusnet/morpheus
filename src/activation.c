@@ -14,3 +14,28 @@ void morpheus_sigmoid_gradient(int n, const double *x, double *y) {
     y[i] = s * (1-s);
   }
 }
+
+void morpheus_relu(int n, const double *x, double *y) {
+  for (int i = 0; i < n; ++i) {
+    y[i] = x[i] > 0 ? x[i] : 0;
+  }
+}
+
+void morpheus_relu_gradient(int n, const double *x, double *y) {
+  for (int i = 0; i < n; ++i) {
+    y[i] = x[i] > 0 ? 1 : 0;
+  }
+}
+
+void morpheus_tanh(int n, const double *x, double *y) {
+  for (int i = 0; i < n; ++i) {
+    y[i] = tanh(x[i]);
+  }
+}
+
+void morpheus_tanh_gradient(int n, const double *x, double *y) {
+  for (int i = 0; i < n; ++i) {
+    const double t = tanh(x[i]);
+    y[i] = 1 - t*t;
+  }
+}
