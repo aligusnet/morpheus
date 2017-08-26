@@ -79,5 +79,12 @@ tests = [testGroup "Column Sum" [
             testCase "row major" $ assertValuesAndIndices (rowMinValuesRM, rowMinIndicesRM) (rowMinIndex xRM)
           , testCase "column major" $ assertValuesAndIndices (rowMinValuesCM, rowMinIndicesCM) (rowMinIndex xCM)
           ]
-
+        , testGroup "Column Predicate" [
+            testCase "max - row major" $ assertVector "" 1e-10 columnMaxValuesRM (columnPredicate max xRM)
+          , testCase "max - col major" $ assertVector "" 1e-10 columnMaxValuesCM (columnPredicate max xCM)
+          ]
+          , testGroup "Row Predicate" [
+              testCase "min - row major" $ assertVector "" 1e-10 rowMinValuesRM (rowPredicate min xRM)
+            , testCase "min - col major" $ assertVector "" 1e-10 rowMinValuesCM (rowPredicate min xCM)
+            ]
         ]

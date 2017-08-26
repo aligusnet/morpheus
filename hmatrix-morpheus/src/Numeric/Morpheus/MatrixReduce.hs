@@ -9,7 +9,9 @@ Portability: POSIX
 
 module Numeric.Morpheus.MatrixReduce
 (
-  columnSum
+  columnPredicate
+  , rowPredicate
+  , columnSum
   , rowSum
   , columnMaxIndex
   , columnMinIndex
@@ -22,12 +24,69 @@ where
 import Numeric.LinearAlgebra
 import Numeric.LinearAlgebra.Devel
 import System.IO.Unsafe(unsafePerformIO)
+import Foreign
 import Foreign.C.Types
 import Foreign.Ptr(Ptr)
 
 
 morpheusLayout :: CInt -> CInt -> CInt
 morpheusLayout xCol cols = if xCol == 1 || cols == 1 then 21 else 22
+
+
+type Predicate = R -> R -> R
+foreign import ccall "wrapper" mkPredicate :: Predicate -> IO (FunPtr Predicate)
+
+
+{- morpheus_column_predicate -}
+foreign import ccall safe "morpheus_column_predicate"
+  c_morpheus_column_predicate :: FunPtr Predicate -> CInt -> CInt -> CInt
+                              -> Ptr R -> Ptr R -> IO ()
+
+
+call_morpheus_column_predicate :: FunPtr Predicate
+                               -> CInt -> CInt -> CInt -> CInt -> Ptr R
+                               -> CInt -> Ptr R
+                               -> IO ()
+call_morpheus_column_predicate f rows cols xRow xCol matPtr _ vecPtr = do
+  let layout = morpheusLayout xCol cols
+  c_morpheus_column_predicate f layout rows cols matPtr vecPtr
+
+
+-- | Scan every column of the given matrix.
+-- Predicate takes and accumulator and next value of the column, returns new accumulator.
+-- Returns accumulator values for every column.
+columnPredicate :: (R -> R -> R) -> Matrix R -> Vector R
+columnPredicate f m = unsafePerformIO $ do
+  v <- createVector (cols m)
+  fpred <- mkPredicate f
+  apply m (apply v id) (call_morpheus_column_predicate fpred)
+  return v
+
+
+{- morpheus_row_predicate -}
+foreign import ccall safe "morpheus_row_predicate"
+  c_morpheus_row_predicate :: FunPtr Predicate -> CInt -> CInt -> CInt
+                           -> Ptr R -> Ptr R -> IO ()
+
+
+call_morpheus_row_predicate :: FunPtr Predicate
+                            -> CInt -> CInt -> CInt -> CInt -> Ptr R
+                            -> CInt -> Ptr R
+                            -> IO ()
+call_morpheus_row_predicate f rows cols xRow xCol matPtr _ vecPtr = do
+  let layout = morpheusLayout xCol cols
+  c_morpheus_row_predicate f layout rows cols matPtr vecPtr
+
+
+-- | Scan every row of the given matrix.
+-- Predicate takes and accumulator and next value of the row, returns new accumulator.
+-- Returns accumulator values for every row.
+rowPredicate :: (R -> R -> R) -> Matrix R -> Vector R
+rowPredicate f m = unsafePerformIO $ do
+  v <- createVector (rows m)
+  fpred <- mkPredicate f
+  apply m (apply v id) (call_morpheus_row_predicate fpred)
+  return v
 
 
 {- morpheus_column_sum -}

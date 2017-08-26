@@ -12,10 +12,8 @@
   \{
 */
 
-/*! Scan every column if matrix x.
-
+/*! Scan every column of the matrix x.
   Pred takes and accumulator and next value of the column, returns new accumulator.
-
   Returns accumulator values for every column.
  */
 void morpheus_column_predicate(double (*pred)(double, double),
@@ -25,10 +23,8 @@ void morpheus_column_predicate(double (*pred)(double, double),
                                const double *x,
                                double *y                  /*!< vector of size ncols */);
 
-/*! Scan every row if matrix x.
-
+/*! Scan every row of the matrix x.
  Pred takes and accumulator and next value of the row, returns new accumulator.
-
  Returns accumulator values for every row.
 */
 void morpheus_row_predicate(double (*pred)(double, double),
