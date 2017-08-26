@@ -1,4 +1,4 @@
-#include "../src/matrix_map.h"
+#include "../src/matrix_reduce.h"
 
 #include <Unity/unity.h>
 

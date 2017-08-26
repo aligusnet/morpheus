@@ -1,4 +1,4 @@
-#include "matrix_map.h"
+#include "matrix_reduce.h"
 
 #include <math.h>
 #include <stdio.h>

@@ -1,4 +1,4 @@
-module Numeric.MorpheusTest
+module Numeric.Morpheus.MatrixReduceTest
 (
   tests
 )
@@ -11,7 +11,7 @@ import Test.HUnit
 import Test.HUnit.Plus
 
 import Numeric.LinearAlgebra
-import Numeric.Morpheus
+import Numeric.Morpheus.MatrixReduce
 
 
 xRM = matrix 5 [

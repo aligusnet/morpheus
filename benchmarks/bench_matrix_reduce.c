@@ -1,7 +1,7 @@
-#include "bench_matrix_map.h"
+#include "bench_matrix_reduce.h"
 #include "benchmark.h"
 
-#include "../src/matrix_map.h"
+#include "../src/matrix_reduce.h"
 
 #include <stdio.h>
 #include <stdlib.h>

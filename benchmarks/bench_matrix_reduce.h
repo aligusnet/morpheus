@@ -1,5 +1,5 @@
-#ifndef MORPHEUS_BENCHMARKS_BENCH_MATRIX_MAP_H
-#define MORPHEUS_BENCHMARKS_BENCH_MATRIX_MAP_H
+#ifndef MORPHEUS_BENCHMARKS_BENCH_MATRIX_REDUCE_H
+#define MORPHEUS_BENCHMARKS_BENCH_MATRIX_REDUCE_H
 
 #include "../src/simple_blas.h"
 
@@ -37,4 +37,4 @@ void bench_row_sum(int n, const char *message,
                    morpheus_layout_e layout,
                    int size, double *x);
 
-#endif /* MORPHEUS_BENCHMARKS_BENCH_MATRIX_MAP_H */
+#endif /* MORPHEUS_BENCHMARKS_BENCH_MATRIX_REDUCE_H */

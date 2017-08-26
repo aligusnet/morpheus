@@ -1,4 +1,4 @@
-#include "bench_matrix_map.h"
+#include "bench_matrix_reduce.h"
 #include "bench_simple_blas.h"
 #include "bench_activation.h"
 

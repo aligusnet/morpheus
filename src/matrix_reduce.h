@@ -1,14 +1,14 @@
-/*! \file matrix_map.h
-  \brief Matrix column/row map operations.
+/*! \file matrix_reduce.h
+  \brief Matrix reduce by column/row operations.
 */
 
-#ifndef MORPHEPUS_MATRIX_MAP_H
-#define MORPHEPUS_MATRIX_MAP_H
+#ifndef MORPHEPUS_MATRIX_REDUCE_H
+#define MORPHEPUS_MATRIX_REDUCE_H
 
 #include "simple_blas.h"
 
-/*! \defgroup matrix_map matrix_map
-  \brief Matrix column/row map operations.
+/*! \defgroup matrix_reduce matrix_reduce
+  \brief Matrix reduce by column/row operations.
   \{
 */
 
@@ -79,4 +79,4 @@ void morpheus_row_sum(morpheus_layout_e layout,
                       double *y              /*!< vector of sums of size nrows */);
 /*! \} */
 
-#endif /* MORPHEPUS_MATRIX_MAP_H */
+#endif /* MORPHEPUS_MATRIX_REDUCE_H */
