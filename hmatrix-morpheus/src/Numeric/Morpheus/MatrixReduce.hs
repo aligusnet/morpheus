@@ -21,16 +21,14 @@ module Numeric.Morpheus.MatrixReduce
 
 where
 
+import Numeric.Morpheus.Utils(morpheusLayout)
+
 import Numeric.LinearAlgebra
 import Numeric.LinearAlgebra.Devel
 import System.IO.Unsafe(unsafePerformIO)
 import Foreign
 import Foreign.C.Types
 import Foreign.Ptr(Ptr)
-
-
-morpheusLayout :: CInt -> CInt -> CInt
-morpheusLayout xCol cols = if xCol == 1 || cols == 1 then 21 else 22
 
 
 type Predicate = R -> R -> R

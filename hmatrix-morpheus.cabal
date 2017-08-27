@@ -1,5 +1,5 @@
 name:                hmatrix-morpheus
-version:             0.1.0.2
+version:             0.1.1.0
 synopsis:            Low-level machine learning auxiliary functions.
 description:
   Purely functional interface to morpheus based on hmatrix.
@@ -36,6 +36,7 @@ library
                      , Numeric.Morpheus.Activation
                      , Numeric.Morpheus.MatrixReduce
                      , Numeric.Morpheus.Statistics
+  other-modules:       Numeric.Morpheus.Utils
   build-depends:       base >= 4.7 && < 5
                      , hmatrix >= 0.17.0.1
   default-language:    Haskell2010

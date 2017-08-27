@@ -47,6 +47,10 @@ extern void test_tanh_gradient();
 extern void test_mean();
 extern void test_stddev_m();
 extern void test_stddev();
+extern void test_column_mean();
+extern void test_row_mean();
+extern void test_column_stddev_m();
+extern void test_row_stddev_m();
 
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
@@ -97,6 +101,10 @@ int main (int argc, char **argv) {
   RUN_TEST(test_mean);
   RUN_TEST(test_stddev_m);
   RUN_TEST(test_stddev);
+  RUN_TEST(test_column_mean);
+  RUN_TEST(test_row_mean);
+  RUN_TEST(test_column_stddev_m);
+  RUN_TEST(test_row_stddev_m);
 
   return (UnityEnd());
 }
