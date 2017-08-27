@@ -16,7 +16,6 @@ env:
   - ARGS="--resolver lts-9.1"  GHCVER=8.0.1
 
 before_install:
-# Download and unpack the stack executable
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
@@ -34,4 +33,4 @@ script:
 
 after_success:
   - make bench
-  - stack bench
+  - stack $ARGS bench

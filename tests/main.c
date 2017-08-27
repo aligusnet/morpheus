@@ -43,6 +43,11 @@ extern void test_relu_gradient();
 extern void test_tanh();
 extern void test_tanh_gradient();
 
+//statistics
+extern void test_mean();
+extern void test_stddev_m();
+extern void test_stddev();
+
 int main (int argc, char **argv) {
   UnityBegin("morpheus tests");
   RUN_TEST(test_least_squares);
@@ -87,6 +92,11 @@ int main (int argc, char **argv) {
   RUN_TEST(test_relu_gradient);
   RUN_TEST(test_tanh);
   RUN_TEST(test_tanh_gradient);
+
+  //statistics
+  RUN_TEST(test_mean);
+  RUN_TEST(test_stddev_m);
+  RUN_TEST(test_stddev);
 
   return (UnityEnd());
 }
