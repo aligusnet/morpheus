@@ -24,6 +24,7 @@ before_install:
 install:
 - stack --no-terminal $ARGS setup
 - stack --no-terminal $ARGS install hscolour
+- stack --no-terminal $ARGS install criterion
 - stack $ARGS ghc -- --version
 
 
