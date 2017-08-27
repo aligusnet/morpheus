@@ -1,0 +1,25 @@
+name:                hmatrix-morpheus-example
+version:             0.1.0.0
+synopsis:            hmatrix-morpheus examples
+homepage:            https://github.com/Alexander-Ignatyev/morpheus/tree/master/hmatrix-morpheus/examples
+license:             BSD3
+author:              Alexander Ignatyev
+maintainer:          ignatyev.alexander@gmail.com
+copyright:           Alexander Ignatyev
+category:            math
+build-type:          Simple
+cabal-version:       >=1.10
+
+
+executable hmatrix-morpheus-example
+  hs-source-dirs:      .
+  main-is:             Main.hs
+  build-depends:       base
+                     , hmatrix-morpheus
+                     , hmatrix >= 0.17.0.1
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/alexander-ignatyev/morpheus

@@ -14,7 +14,7 @@ a = matrix 5 [
 
 main :: IO ()
 main = do
-  putStrLn "Numeric.Morpheus.MatrixReduce functions: "
+  putStrLn "\nNumeric.Morpheus.MatrixReduce functions: "
 
   putStr "sum of elements of rows: "
   print $ rowSum a
@@ -29,7 +29,7 @@ main = do
   print $ snd $ columnMaxIndex a
 
 
-  putStrLn "Numeric.Morpheus.Activation functions: "
+  putStrLn "\n\nNumeric.Morpheus.Activation functions: "
 
   putStrLn "\nSigmoid:"
   disp 3 (sigmoid a)
@@ -39,3 +39,13 @@ main = do
 
   putStrLn "ReLu gradient:"
   disp 3 (reluGradient a)
+
+
+  putStrLn "\n\nNumeric.Morpheus.Statistics functions: "
+
+  putStrLn "\nColumn Means:"
+  let colmeans = columnMean a
+  print colmeans
+
+  putStrLn "Column Standard Deviations: "
+  print (columnStddev_m colmeans a)
