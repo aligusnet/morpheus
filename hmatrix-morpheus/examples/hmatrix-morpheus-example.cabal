@@ -1,7 +1,7 @@
 name:                hmatrix-morpheus-example
 version:             0.1.0.0
 synopsis:            hmatrix-morpheus examples
-homepage:            https://github.com/Alexander-Ignatyev/morpheus/tree/master/hmatrix-morpheus/examples
+homepage:            https://github.com/aligusnet/morpheus/tree/master/hmatrix-morpheus/examples
 license:             BSD3
 author:              Alexander Ignatyev
 maintainer:          ignatyev.alexander@gmail.com
@@ -22,4 +22,4 @@ executable hmatrix-morpheus-example
 
 source-repository head
   type:     git
-  location: https://github.com/alexander-ignatyev/morpheus
+  location: https://github.com/aligusnet/morpheus.git

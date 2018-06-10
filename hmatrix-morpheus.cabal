@@ -1,5 +1,5 @@
 name:                hmatrix-morpheus
-version:             0.1.1.1
+version:             0.1.1.2
 synopsis:            Low-level machine learning auxiliary functions.
 description:
   Purely functional interface to morpheus based on hmatrix.
@@ -7,7 +7,7 @@ description:
   suitable for using as a low-level primitives to build machine learning applications.
   .
   Examples are in "Numeric.Morpheus" module.
-homepage:            https://github.com/Alexander-Ignatyev/morpheus/tree/master/hmatrix-morpheus
+homepage:            https://github.com/aligusnet/morpheus/tree/master/hmatrix-morpheus
 license:             BSD3
 license-file:        LICENSE
 author:              Alexander Ignatyev
@@ -109,4 +109,4 @@ benchmark hmatrix-morpheus-bench
 
 source-repository head
   type:     git
-  location: https://github.com/alexander-ignatyev/morpheus
+  location: https://github.com/aligusnet/morpheus.git

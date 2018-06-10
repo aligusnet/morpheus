@@ -13,7 +13,7 @@ cache:
   - $HOME/.stack
 
 env:
-  - ARGS="--resolver lts-9.1"  GHCVER=8.0.1
+  - ARGS="--resolver lts-11.13"  GHCVER=8.2.2
 
 before_install:
 - mkdir -p ~/.local/bin

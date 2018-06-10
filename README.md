@@ -1,7 +1,7 @@
 # morpheus
 
 
-[![Build Status](https://travis-ci.org/Alexander-Ignatyev/morpheus.svg?branch=master)](https://travis-ci.org/Alexander-Ignatyev/morpheus)
+[![Build Status](https://travis-ci.org/aligusnet/morpheus.svg?branch=master)](https://travis-ci.org/aligusnet/morpheus)
 
 The library contains a bunch of cache line aware numerical algorithms suitable for using as a low-level primitives to build machine learning applications.
 
